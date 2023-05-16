@@ -1,12 +1,21 @@
+import { useState } from "react";
 import "./styles.scss";
+import { useNavigate } from "react-router-dom";
 
 function InputSearch({}) {
+  const navigate = useNavigate()
+  const [input, setInput] = useState("");
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    navigate(`/products/search?q=${input}`)
+  }
 
   return (
-    <form className="form">
+    <form className="form" onSubmit={handleSubmit}>
       <input
         type="text"
         placeholder="Search"
+        onChange={(e)=> setInput(e.target.value)}
       />
       <button>
         <svg viewBox="0 0 1024 1024">
