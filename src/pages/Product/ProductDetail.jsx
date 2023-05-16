@@ -1,5 +1,4 @@
 import "./styles.scss";
-import Spinner from "react-bootstrap/Spinner";
 import React, { useEffect, useState } from "react";
 import { Layout } from "../../components/Layout/Layout.jsx";
 import { useParams } from "react-router";

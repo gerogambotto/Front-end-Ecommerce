@@ -25,7 +25,7 @@ $font-size--large-text--desktop: 2rem;
 }
 .cartButton {
   text-decoration: none;
-  background-color: fff;
+  background-color: #fff;
   box-sizing: border-box;
   color: #fff;
   align-items: center;
@@ -33,7 +33,6 @@ $font-size--large-text--desktop: 2rem;
   text-transform: uppercase;
   padding: 13px;
   font-weight: 500;
-  box-sizing: border-box;
   cursor: pointer;
   margin-left: 15px;
   border-radius: 40px;
@@ -49,7 +48,6 @@ $font-size--large-text--desktop: 2rem;
   padding: 13px;
   font-weight: 500;
   border-radius: 40px;
-  box-sizing: border-box;
   cursor: pointer;
 }
 .carttext {

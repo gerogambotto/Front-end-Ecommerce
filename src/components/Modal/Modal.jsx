@@ -1,4 +1,4 @@
-const Modal = ({ subcategorias }) => {
+const Modal = () => {
   return <div></div>;
 };
 

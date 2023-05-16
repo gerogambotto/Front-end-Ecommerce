@@ -48,8 +48,8 @@ export const Footer = () => {
         </Row>
         <Row>
           <Col>
-            <img src="https://baproar.vtexassets.com/assets/vtex/assets-builder/baproar.bapro-store-theme/2.0.10/footer/banco-provincia___1ec6ded06bbc30602319af4357a5a067.png"></img>
-            <img src="https://baproar.vtexassets.com/assets/vtex/assets-builder/baproar.bapro-store-theme/2.0.10/footer/banco-provincia-net___00767a0655a635b989120e18e5706f09.png"></img>
+            <img src="https://baproar.vtexassets.com/assets/vtex/assets-builder/baproar.bapro-store-theme/2.0.10/footer/banco-provincia___1ec6ded06bbc30602319af4357a5a067.png" alt=''></img>
+            <img src="https://baproar.vtexassets.com/assets/vtex/assets-builder/baproar.bapro-store-theme/2.0.10/footer/banco-provincia-net___00767a0655a635b989120e18e5706f09.png" alt=''></img>
           </Col>
           <Col className="d-flex flex-column justify-content-center align-items-center text-center terminos col-8 ">
             <div>Terminos y condiciones de navegabilidad del sitio web</div>

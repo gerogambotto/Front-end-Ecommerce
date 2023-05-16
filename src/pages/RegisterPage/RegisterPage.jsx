@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react"
+import { useEffect, useState } from "react"
 import { Layout } from "../../components/Layout/Layout.jsx"
 import "./styles.scss"
 import { authGlobalState } from "../../context/authcontext/AuthContext.jsx"
@@ -27,9 +27,8 @@ export function RegisterPage() {
     }
   }
 
-  function isEmail(emailAdress) {
-    if (emailAdress.match(regex)) return true
-    else return false
+  function isEmail(emailAddress) {
+    return !!emailAddress.match(regex);
   }
 
   useEffect(() => {
