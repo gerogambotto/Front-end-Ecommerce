@@ -21,6 +21,7 @@ export function RegisterPage() {
     try {
       if(validEmail && validPassword){
         await register({ email, password ,rePassword})
+        alert('Registration successful')
       }
     } catch (error) {
       console.error("Register error", error)

@@ -1,5 +1,5 @@
 import axios from "axios"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { useContext } from "react"
 import { createContext } from "react"
 
@@ -22,7 +22,7 @@ export const AuthProvider = ({ children }) => {
     if (res.status === 200) {
       localStorage.setItem("token", res.data.token)
       setIsLoggedIn(true)
-    } else{
+    } else {
       setIsLoggedIn(false)
     }
   }
@@ -41,15 +41,24 @@ export const AuthProvider = ({ children }) => {
       .then(console.log)
     console.log("registered")
   }
-  const logout = () => {}
+  const logout = () => {
+    localStorage.removeItem("token")
+    setIsLoggedIn(false)
+  }
+
+  useEffect(() => {
+    if (localStorage.getItem("token")) {
+      setIsLoggedIn(true)
+    }
+  }, [isLoggedIn])
 
   return (
     <authContext.Provider
       value={{
         login,
         register,
-        logout,
         isLoggedIn,
+        logout,
       }}
     >
       {children}
