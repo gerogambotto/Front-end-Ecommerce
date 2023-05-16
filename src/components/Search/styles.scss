@@ -1,0 +1,42 @@
+@import '../../styles/variables';
+
+.form{
+    
+    background-color: white;
+    width: 300px;
+    height: 44px;
+    border-radius: 50px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    border: 1px solid $primaryColor;
+
+
+    input {
+      all: unset;
+      font: 16px system-ui;
+      color: rgb(0,0,0);
+      height: 100%;
+      width: 100%;
+      padding: 6px 10px;
+    }
+    ::placeholder {
+      color: rgb(0,0,0);
+      opacity: 0.7; 
+    }
+    button {
+      all: unset;
+      cursor: pointer;
+      width: 44px;
+      height: 44px;
+      text-align: center;
+    }
+    
+    svg {
+      color: $primaryColor;
+      fill: currentColor;
+      width: 24px;
+      height: 24px;
+      margin-top: 5px;
+    }
+}

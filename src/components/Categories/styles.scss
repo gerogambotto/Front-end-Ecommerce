@@ -1,0 +1,49 @@
+@import "../../styles/variables.scss";
+
+.categories-container{
+  display: flex;
+  margin: 0 1rem;
+
+  .sub-categories{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 70px;
+    cursor: pointer;
+
+    h3{
+      text-transform: capitalize;
+      margin: 0 1rem;
+    }
+  }
+
+  .sub-categories-modal{
+    position: absolute;
+    left: 0;
+    width: 100%;
+    top: 10rem;
+    background-color: #fff;
+    height: 80px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1;
+
+
+    .sub-categories{
+      text-transform: capitalize;
+      margin: 0;
+      padding-right: 2rem;
+      padding-left: 2rem;
+      height: 100%;
+      text-decoration: none;
+      color: $primaryColor;
+      font-weight: 700;
+      line-height: 30px;
+      
+    }
+    .sub-categories:hover{
+      background-color: red;
+    }
+  }
+}

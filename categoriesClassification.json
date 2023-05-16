@@ -1,0 +1,21 @@
+[
+  {
+  "electronics": ["smartphones","laptops", "tablets"]
+  },
+  {
+    "fashion": [
+      "womens-dresses",
+      "mens-shirts",
+      "mens-shoes",
+      "mens-watches",
+      "womens-watches",
+      "womens-bags"
+    ]
+  },
+  {
+    "beauty": [
+      "fragrances",
+      "skincare"
+    ]
+  }
+]

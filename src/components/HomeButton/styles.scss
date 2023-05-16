@@ -1,0 +1,17 @@
+@import '../../styles/variables.scss';
+
+.menu {
+  display:flex;
+  align-items: center;
+  justify-content: left;
+  cursor: pointer;
+
+  .logo{
+    width: 60px;
+    height: 60px;
+  }
+}
+
+  
+
+

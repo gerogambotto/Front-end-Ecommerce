@@ -1,0 +1,8 @@
+@import "./styles/variables.scss";
+
+body{
+    background-color: $backgroundColor;
+    font-family: 'Encode Sans', sans-serif !important;
+    min-height: 100vh;
+    margin: 0;
+}
