@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import categoriesClassification from "../../../categoriesClassification.json";
 import Categories from "../Categories/Categories.jsx";
 
+
 export const Navbar = () => {
   const [userIsLogged, setUserIsLogged] = useState(false);
 
