@@ -8,7 +8,6 @@ import Categories from "../Categories/Categories.jsx";
 
 export const Navbar = () => {
   const [userIsLogged, setUserIsLogged] = useState(false);
-  const [inputValue, setInputValue] = useState(" ");
 
   const navigate = useNavigate()
   const logOut = () => {
@@ -30,7 +29,7 @@ export const Navbar = () => {
             <HomeButton />
           </div>
           <div className='col-sm-8 d-flex justify-content-center align-items-center'>
-            <InputSearch value={inputValue} setInputValue={setInputValue} />
+            <InputSearch />
           </div>
           <div className='col-sm-2 d-flex justify-content-end align-items-center'>
             {!userIsLogged ? (
