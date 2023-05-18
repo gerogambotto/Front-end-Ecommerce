@@ -6,23 +6,25 @@ import { Col, Container, Row } from "react-bootstrap"
 import { Link } from "react-router-dom"
 import visa from "./visa.svg"
 import mastercard from "./mastercard.svg"
-import CartModal from "../../components/CartModal/CartModal"
 import { useNavigate } from "react-router-dom"
 import { CartGlobalState } from "../../context/cartContext/CartContext"
-import ItemCount from "../../components/ItemCount/itemCount"
+import { authGlobalState } from "../../context/authcontext/AuthContext"
+import add from "./add.svg"
+import minus from "./dash.svg"
 
 export function ProductDetail() {
   const { id } = useParams()
   const [product, setProduct] = useState(null)
   const [isLoading, setIsLoading] = useState(true)
   const [cartModal, setCartModal] = useState(false)
+  const { showCart, setShowCart } = authGlobalState(false)
 
   const { addToCart, cartList } = CartGlobalState()
   const navigate = useNavigate()
 
-  const onAdd = (product, qty) => {
-    addToCart(product, qty)
-    ToggleModal()
+  const onAdd = () => {
+    setShowCart(!showCart)
+    addToCart(product)
   }
 
   const ToggleModal = () => {
@@ -40,6 +42,18 @@ export function ProductDetail() {
   useEffect(() => {
     getProduct()
   }, [])
+
+  const [count, setCount] = useState(1)
+  const increment = () => {
+    if (count < product?.stock) {
+      setCount(count + 1)
+    }
+  }
+  const decrement = () => {
+    if (count > 1) {
+      setCount(count - 1)
+    }
+  }
 
   return (
     <Layout>
@@ -88,9 +102,15 @@ export function ProductDetail() {
                 Vendido por <strong>{product?.brand}</strong>
               </div>
               <div className="price mt-4 mb-3"> $ {product?.price}</div>
-              <ItemCount initial={1} stock={product?.stock}>
-                {" "}
-              </ItemCount>
+              <div>
+                <button className="border-0 ml-2 " onClick={decrement}>
+                  <img className="minus" src={minus} alt="minus" />
+                </button>
+                <div>{count && count}</div>
+                <button onClick={increment} className="add mr-">
+                  <img src={add} alt="add" />
+                </button>
+              </div>
               <div className="cuotas mt-2">
                 Hasta 6 cuotas sin interés de ${Math.round(product?.price / 6)}
               </div>
@@ -103,10 +123,7 @@ export function ProductDetail() {
                 <div style={{ color: "white" }}>Buy</div>
               </button>
               <button className="cartButton">
-                <div
-                  className="carttext"
-                  onClick={() => onAdd(product?.title, product?.stock)}
-                >
+                <div className="carttext" onClick={() => onAdd()}>
                   Add to cart
                 </div>
               </button>

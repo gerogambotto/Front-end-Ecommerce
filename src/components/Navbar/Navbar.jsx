@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useEffect } from "react"
 import "./styles.scss"
 import InputSearch from "../Search/imputSearch.jsx"
 import HomeButton from "../HomeButton/HomeButton.jsx"
@@ -21,12 +21,14 @@ export const Navbar = () => {
           </div>
           <div className="col-sm-8 d-flex justify-content-center align-items-center">
             <InputSearch />
-            <button className="ml-3 cart-button border-0 " onClick={() => navigate("/cart")}>
-              <img className="cart-icon" src={cart} alt='cart-icon'/>
+            <button
+              className="ml-3 cart-button border-0 "
+              onClick={() => navigate("/cart")}
+            >
+              <img className="cart-icon" src={cart} alt="cart-icon" />
             </button>
           </div>
           <div className="col-sm-2 d-flex justify-content-end align-items-center">
-            
             {!isLoggedIn ? (
               <div className="login-register">
                 <button
@@ -50,16 +52,14 @@ export const Navbar = () => {
                 >
                   Log out
                 </button>
-                <button onClick={()=>setShowCart(!showCart)}>
-                  Cart
-                </button>
+                <button onClick={() => setShowCart(!showCart)}>Cart</button>
               </div>
             )}
           </div>
         </div>
       </div>
       <div className="container-fluid">
-        <div className="navbar-bottom d-flex justify-content-center align-items-center" >
+        <div className="navbar-bottom d-flex justify-content-center align-items-center">
           {categoriesClassification.map((e) => (
             <Categories category={e} key={e.id} />
           ))}

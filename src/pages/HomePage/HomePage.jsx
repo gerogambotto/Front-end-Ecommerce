@@ -41,12 +41,7 @@ export function HomePage() {
         ))}
       </section>
 
-      <Modal show={!!showCart} onHide={()=>setShowCart()} animation={false}>
-        <Modal.Header>
-          <Modal.Title>Cart</Modal.Title>
-        </Modal.Header>
-        <Modal.Body></Modal.Body>
-      </Modal>
+      
     </Layout>
   )
 }

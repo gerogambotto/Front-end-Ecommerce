@@ -1,5 +1,5 @@
 import "./styles.scss"
-const CartModal = ({ cart }) => {
+const CardModal = ({ cart }) => {
   return (
     <div className="cart-card">
       <a style={{ color: "#fff" }} className="" href={`/product/${cart.id}`}>
@@ -21,4 +21,4 @@ const CartModal = ({ cart }) => {
   )
 }
 
-export default CartModal
+export default CardModal
