@@ -1,8 +1,8 @@
-import React, { useState } from "react"
+import React from "react"
 import "./styles.scss"
 import InputSearch from "../Search/imputSearch.jsx"
 import HomeButton from "../HomeButton/HomeButton.jsx"
-import { Navigate, useNavigate } from "react-router-dom"
+import { useNavigate } from "react-router-dom"
 import categoriesClassification from "../../../categoriesClassification.json"
 import Categories from "../Categories/Categories.jsx"
 import { authGlobalState } from "../../context/authcontext/AuthContext"
@@ -22,7 +22,7 @@ export const Navbar = () => {
           <div className="col-sm-8 d-flex justify-content-center align-items-center">
             <InputSearch />
             <button className="ml-3 cart-button border-0 " onClick={() => navigate("/cart")}>
-              <img className="cart-icon" src={cart}/>
+              <img className="cart-icon" src={cart} alt='cart-icon'/>
             </button>
           </div>
           <div className="col-sm-2 d-flex justify-content-end align-items-center">

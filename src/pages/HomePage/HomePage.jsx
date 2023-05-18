@@ -4,7 +4,6 @@ import { CarouselProducts } from '../../components/CarouselProducts/CarouselProd
 import './styles.scss'
 import categoriesClassification from '../../../categoriesClassification.json'
 import { authGlobalState } from '../../context/authcontext/AuthContext.jsx'
-import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 
 export function HomePage() {
