@@ -8,20 +8,20 @@ import Categories from "../Categories/Categories.jsx";
 import { authGlobalState } from "../../context/authcontext/AuthContext";
 
 export const Navbar = () => {
-  const {isLoggedIn,logout} = authGlobalState()
+  const { isLoggedIn, logout } = authGlobalState();
   const navigate = useNavigate();
 
   return (
-    <section className='navbar-section'>
+    <section className="navbar-section">
       <div className="container-fluid">
         <div className="navbar-top row justify-content-between">
-          <div className='col-sm-2 d-flex justify-content-start align-items-center'>
+          <div className="col-sm-2 d-flex justify-content-start align-items-center">
             <HomeButton />
           </div>
-          <div className='col-sm-8 d-flex justify-content-center align-items-center'>
+          <div className="col-sm-8 d-flex justify-content-center align-items-center">
             <InputSearch />
           </div>
-          <div className='col-sm-2 d-flex justify-content-end align-items-center'>
+          <div className="col-sm-2 d-flex justify-content-end align-items-center">
             {!isLoggedIn ? (
               <div className="login-register">
                 <button
@@ -38,8 +38,11 @@ export const Navbar = () => {
                 </button>
               </div>
             ) : (
-              <div className="login-register">    
-                <button className="login-register-button" onClick={()=>logout()}>
+              <div className="login-register">
+                <button
+                  className="login-register-button"
+                  onClick={() => logout()}
+                >
                   Log out
                 </button>
               </div>
@@ -49,7 +52,9 @@ export const Navbar = () => {
       </div>
       <div className="container-fluid">
         <div className="navbar-bottom d-flex justify-content-center align-items-center">
-          {categoriesClassification.map(e => <Categories category={e} key={e.id}/>)}
+          {categoriesClassification.map((e) => (
+            <Categories category={e} key={Object.keys(e)} />
+          ))}
         </div>
       </div>
     </section>

@@ -1,4 +1,5 @@
 import { Col, Container, Row } from "react-bootstrap";
+import categoriesClassification from "../../../categoriesClassification.json";
 import "./styles.scss";
 
 export const Footer = () => {
@@ -16,7 +17,7 @@ export const Footer = () => {
           <Col>
             <h5>Marcas</h5>
             <p>Samsung</p>
-            <p>Ariston</p>
+            <p>Iphone</p>
             <p>Puma</p>
             <p>Yagmour</p>
             <p>Tcl</p>
@@ -24,12 +25,14 @@ export const Footer = () => {
           </Col>
           <Col>
             <h5>Categorias</h5>
-            <p>Tecnologia</p>
-            <p>Electro Hogar</p>
-            <p>Moda</p>
-            <p>Deportes</p>
-            <p>Salud y belleza</p>
-            <p>Hogar y deco</p>
+            {categoriesClassification.map((e) => {
+              return (
+                <p key={Object.keys(e)} className="footer-categories">
+                  {" "}
+                  {Object.keys(e)}
+                </p>
+              );
+            })}
           </Col>
           <Col>
             <h5>Ayuda</h5>
@@ -48,18 +51,24 @@ export const Footer = () => {
         </Row>
         <Row>
           <Col>
-            <img src="https://baproar.vtexassets.com/assets/vtex/assets-builder/baproar.bapro-store-theme/2.0.10/footer/banco-provincia___1ec6ded06bbc30602319af4357a5a067.png" alt=''></img>
-            <img src="https://baproar.vtexassets.com/assets/vtex/assets-builder/baproar.bapro-store-theme/2.0.10/footer/banco-provincia-net___00767a0655a635b989120e18e5706f09.png" alt=''></img>
+            <img
+              src="https://baproar.vtexassets.com/assets/vtex/assets-builder/baproar.bapro-store-theme/2.0.10/footer/banco-provincia___1ec6ded06bbc30602319af4357a5a067.png"
+              alt=""
+            ></img>
+            <img
+              src="https://baproar.vtexassets.com/assets/vtex/assets-builder/baproar.bapro-store-theme/2.0.10/footer/banco-provincia-net___00767a0655a635b989120e18e5706f09.png"
+              alt=""
+            ></img>
           </Col>
           <Col className="d-flex flex-column justify-content-center align-items-center text-center terminos col-8 ">
             <div>Terminos y condiciones de navegabilidad del sitio web</div>
-            <div>
-              @ 2023 - Provincia Compras - Casa Matriz Calle 7 N°726(B1900TFS)
-              La Plata,Buenos Aires,Argentina
-            </div>
+            <div>Copyright © 2023 Telar SMG S.A</div>
+            <div>San Nicolas de los Arroyos,Buenos Aires,Argentina</div>
           </Col>
           <Col>
-            <div className="terminos justify-content-center align-items-center text-center">Powered by sebaDor</div>
+            <div className="terminos justify-content-center align-items-center text-center">
+              Powered by sebaDor
+            </div>
           </Col>
         </Row>
       </Container>
