@@ -1,34 +1,77 @@
-import "./styles.scss";
-import React, { useEffect, useState } from "react";
-import { Layout } from "../../components/Layout/Layout.jsx";
-import { useParams } from "react-router";
-import { Col, Container, Row } from "react-bootstrap";
-import { Link } from "react-router-dom";
-import visa from "./visa.svg";
-import mastercard from "./mastercard.svg";
+import "./styles.scss"
+import React, { useEffect, useState } from "react"
+import { Layout } from "../../components/Layout/Layout.jsx"
+import { useParams } from "react-router"
+import { Col, Container, Row } from "react-bootstrap"
+import { Link } from "react-router-dom"
+import visa from "./visa.svg"
+import mastercard from "./mastercard.svg"
+import CartModal from "../../components/CartModal/CartModal"
+import { useNavigate } from "react-router-dom"
+import { CartGlobalState } from "../../context/cartContext/CartContext"
+import ItemCount from "../../components/ItemCount/itemCount"
 
 export function ProductDetail() {
-  const { id } = useParams();
-  const [product, setProduct] = useState(null);
-  const [isLoading, setIsLoading] = useState(true);
+  const { id } = useParams()
+  const [product, setProduct] = useState(null)
+  const [isLoading, setIsLoading] = useState(true)
+  const [cartModal, setCartModal] = useState(false)
+
+  const { addToCart, cartList } = CartGlobalState()
+  const navigate = useNavigate()
+
+  const onAdd = (product, qty) => {
+    addToCart(product, qty)
+    ToggleModal()
+  }
+
+  const ToggleModal = () => {
+    setCartModal(!cartModal)
+  }
 
   const getProduct = async () => {
-    setIsLoading(true);
-    const products = await fetch(`https://dummyjson.com/products/${id}`);
-    const data = await products.json();
-    setProduct(data);
-    setIsLoading(false);
-  };
+    setIsLoading(true)
+    const products = await fetch(`https://dummyjson.com/products/${id}`)
+    const data = await products.json()
+    setProduct(data)
+    setIsLoading(false)
+  }
 
   useEffect(() => {
-    getProduct();
-  }, []);
+    getProduct()
+  }, [])
 
   return (
     <Layout>
       <div className="categories"></div>
+      {cartModal && (
+        <Container fluid className="cart-modal">
+          <Row className="cart-modal-header">
+            <Col sm={10}>
+              <h3>Cart</h3>
+            </Col>
+            <Col sm={2}>
+              <button className="" onClick={() => ToggleModal()}>
+                X
+              </button>
+            </Col>
+          </Row>
+          <Row>
+            <CartModal cart={cartList} />
+          </Row>
+          <Row className="d-flex justify-content-center align-items-center">
+            <div>sub total</div>
+          </Row>
+          <Row className="d-flex justify-content-center align-items-center">
+            <div>total</div>
+          </Row>
+          <Row className="d-flex justify-content-center align-items-center">
+            <button onClick={() => navigate("/cart")}>Checkout</button>
+          </Row>
+        </Container>
+      )}
 
-      <Container >
+      <Container>
         {isLoading ? (
           <div className="loader-container row justify-content-center align-items-center">
             <div className="loader"></div>
@@ -36,11 +79,7 @@ export function ProductDetail() {
         ) : (
           <Row className="productContainer">
             <Col sm={8} className="productImage">
-              <img
-                src={product?.images[0]}
-                alt=""
-                className=" mt-5"
-              ></img>
+              <img src={product?.images[0]} alt="" className=" mt-5"></img>
             </Col>
             <Col sm={4}>
               <div className="productBrand mt-5">{product?.brand}</div>
@@ -48,9 +87,11 @@ export function ProductDetail() {
               <div className="subtitle mt-3">
                 Vendido por <strong>{product?.brand}</strong>
               </div>
-              <div className="price mt-4"> $ {product?.price}</div>
-              <div className="ItemCount"></div>
-              <div className="cuotas">
+              <div className="price mt-4 mb-3"> $ {product?.price}</div>
+              <ItemCount initial={1} stock={product?.stock}>
+                {" "}
+              </ItemCount>
+              <div className="cuotas mt-2">
                 Hasta 6 cuotas sin interés de ${Math.round(product?.price / 6)}
               </div>
               <div className="tarjetasDeCredito"></div>
@@ -59,14 +100,15 @@ export function ProductDetail() {
               <p className="mediosDePago"> Ver todos los medios de pago</p>
               <div className="tiempoEnvio"></div>
               <button className="buyButton">
-                <Link to="/" style={{ color: "white" }}>
-                  Comprar
-                </Link>
+                <div style={{ color: "white" }}>Buy</div>
               </button>
               <button className="cartButton">
-                <Link to="/" className="carttext">
-                  Agregar al Carrito
-                </Link>
+                <div
+                  className="carttext"
+                  onClick={() => onAdd(product?.title, product?.stock)}
+                >
+                  Add to cart
+                </div>
               </button>
             </Col>
 
@@ -80,5 +122,5 @@ export function ProductDetail() {
         )}
       </Container>
     </Layout>
-  );
+  )
 }

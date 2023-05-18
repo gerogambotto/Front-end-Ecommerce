@@ -1,37 +1,49 @@
-@import '../../styles/variables';
+@import "../../styles/variables";
 
-.navbar-section{
+.navbar-section {
   background-color: white;
 
-  .navbar-top{
+  .navbar-top {
     padding-top: 2rem;
 
     .login-register {
-      display:flex;
+      display: flex;
       align-items: center;
       justify-content: flex-end;
 
       .login-button,
-      .register-button{
+      .register-button {
         cursor: pointer;
         padding: 6px 16px;
         border: none;
         min-width: 100px;
       }
 
-      .register-button{
+      .register-button {
         background-color: $primaryColor;
       }
 
-      .login-button:hover{
+      .login-button:hover {
         background-color: $primaryColor;
         transform: scale(1.1);
       }
-      .register-button:hover{
+      .register-button:hover {
         background-color: $primaryColor;
         transform: scale(1.1);
+      }
+      .cart-button-container {
+        display: flex;
+
+        .cart-button {
+          cursor: pointer;
+          border: none;
+        }
+        .cart-icon {
+          height: auto;
+          width: 100%;
+          border: none;
+        }
       }
     }
   }
 }
-

@@ -28,12 +28,14 @@ const ProductsPage = () => {
   }
 
   const [filteredProducts, setFilteredProducts] = useState(null)
+  
   const getFilterProducts = (products) => {
     const res = products?.filter((product) => product.price <= filters.maxPrice)
     setFilteredProducts(res)
   }
 
   const [maxPrice, setMaxPrice] = useState("0")
+
   const getMaxPrice = (products) => {
     const prices = products.map((product) => product.price)
     setMaxPrice(Math.max(...prices).toString())
