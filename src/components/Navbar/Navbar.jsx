@@ -9,7 +9,7 @@ import { authGlobalState } from "../../context/authcontext/AuthContext"
 import cart from "../../../public/assets/cart.svg"
 
 export const Navbar = () => {
-  const { isLoggedIn, logout } = authGlobalState()
+  const { isLoggedIn, logout, showCart, setShowCart } = authGlobalState()
   const navigate = useNavigate()
 
   return (
@@ -49,6 +49,9 @@ export const Navbar = () => {
                   onClick={() => logout()}
                 >
                   Log out
+                </button>
+                <button onClick={()=>setShowCart(!showCart)}>
+                  Cart
                 </button>
               </div>
             )}

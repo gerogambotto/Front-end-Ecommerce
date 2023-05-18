@@ -12,6 +12,7 @@ export const authGlobalState = () => {
 
 export const AuthProvider = ({ children }) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false)
+  const [showCart, setShowCart] = useState(false)
 
   const login = async (email, password) => {
     const body = {
@@ -59,6 +60,8 @@ export const AuthProvider = ({ children }) => {
         register,
         isLoggedIn,
         logout,
+        showCart,
+        setShowCart
       }}
     >
       {children}
