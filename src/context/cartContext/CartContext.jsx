@@ -47,19 +47,26 @@ export const CartContextProvider = ({ children }) => {
     } else {
       
       const cart = JSON.parse(localStorage.getItem("cart"))
-      localStorage.removeItem("cart")
+
+      console.log('borrando el local storage')
+
+      console.log(cart)
+
 
       const existingProduct = cart.find(p => p.productId === productId) 
-      console.log(existingProduct)
-      
+
       if(existingProduct){
         existingProduct.quantity += productQuantity
       }
       cart.push(existingProduct)
-      console.log(cart)
-      
-/* 
-      localStorage.setItem("cart", JSON.stringify(cart))  */
+
+
+
+
+      localStorage.removeItem("cart")
+      localStorage.setItem("cart", JSON.stringify(cart))
+
+
     }
   }
 
