@@ -44,29 +44,17 @@ export const CartContextProvider = ({ children }) => {
 
     if (!localStorage.getItem("cart")) {
       localStorage.setItem("cart", JSON.stringify([productCart]))
+
     } else {
-      
+
       const cart = JSON.parse(localStorage.getItem("cart"))
-
-      console.log('borrando el local storage')
-
-      console.log(cart)
-
-
-      const existingProduct = cart.find(p => p.productId === productId) 
-
-      if(existingProduct){
-        existingProduct.quantity += productQuantity
+      const existingProduct = cart.find((p) => p.productId === productId)
+      if (existingProduct) {
+        existingProduct.quantity += 1
+      } else {
+        cart.push(productCart)
       }
-      cart.push(existingProduct)
-
-
-
-
-      localStorage.removeItem("cart")
       localStorage.setItem("cart", JSON.stringify(cart))
-
-
     }
   }
 
@@ -77,16 +65,13 @@ export const CartContextProvider = ({ children }) => {
   const removeFromCart = (product) => {
     setCartList(cartList.filter((item) => item.id !== product.id))
   }
-  const clearCart = () => {
-    setCartList([])
-  }
+
 
   return (
     <CartContext.Provider
       value={{
         cartList,
         addToCart,
-        clearCart,
         removeFromCart,
         addToLocalStorage,
       }}

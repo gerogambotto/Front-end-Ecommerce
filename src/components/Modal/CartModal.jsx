@@ -1,13 +1,33 @@
 import { Modal } from "react-bootstrap"
 import { authGlobalState } from "../../context/authcontext/AuthContext"
 import CardModal from "../CardModal/CardModal"
-
+import axios from "axios"
+import { useEffect, useState } from "react"
 
 const CartModal = () => {
   const { showCart, setShowCart } = authGlobalState(false)
+  const cartProducts = JSON.parse(localStorage.getItem("cart"))
 
-  const products = JSON.parse(localStorage.getItem("cart"))
-  console.log(products)
+  const [cartData, setCartData] = useState([])
+
+  const getCartProducts = async () => {
+    try {
+      const promises = cartProducts.map(async (item) => {
+        const res = await axios.get(
+          `https://dummyjson.com/products/${item.productId}`
+        )
+        return res.data
+      })
+
+      const cartAwaited = await Promise.all(promises)
+      setCartData(cartAwaited)
+    } catch (error) {
+      console.log(error)
+    }
+  }
+  useEffect(() => {
+    getCartProducts()
+  }, [])
 
   return (
     <>
@@ -16,9 +36,9 @@ const CartModal = () => {
           <Modal.Title>Cart</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-        {/* {products.map((item)=>(
-          <CardModal key={item.id} cart={item} />
-        ))} */}
+          {cartData?.map((item) => (
+            <CardModal key={item.id} cart={item} />
+          ))}
         </Modal.Body>
       </Modal>
     </>

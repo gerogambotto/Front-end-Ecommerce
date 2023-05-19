@@ -18,12 +18,10 @@ export function ProductDetail() {
   const [isLoading, setIsLoading] = useState(true)
   const [cartModal, setCartModal] = useState(false)
   const { showCart, setShowCart } = authGlobalState(false)
-
   const { addToCart, cartList, addToLocalStorage } = CartGlobalState()
   const navigate = useNavigate()
 
   const onAddToCart = (productId, count) => {
-    setShowCart(!showCart)
     addToCart(productId, count)
   }
 
@@ -42,6 +40,7 @@ export function ProductDetail() {
   useEffect(() => {
     getProduct()
   }, [])
+
 
   const [count, setCount] = useState(1)
   const increment = () => {
