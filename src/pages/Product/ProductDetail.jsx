@@ -19,12 +19,12 @@ export function ProductDetail() {
   const [cartModal, setCartModal] = useState(false)
   const { showCart, setShowCart } = authGlobalState(false)
 
-  const { addToCart, cartList } = CartGlobalState()
+  const { addToCart, cartList,addToLocalStorage } = CartGlobalState()
   const navigate = useNavigate()
 
   const onAdd = () => {
     setShowCart(!showCart)
-    addToCart(product)
+    addToCart(product,count)
   }
 
   const ToggleModal = () => {
@@ -71,7 +71,7 @@ export function ProductDetail() {
             </Col>
           </Row>
           <Row>
-            <CartModal cart={cartList} />
+            <CartModal  />
           </Row>
           <Row className="d-flex justify-content-center align-items-center">
             <div>sub total</div>

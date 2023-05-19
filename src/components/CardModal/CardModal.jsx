@@ -1,5 +1,5 @@
 import "./styles.scss"
-const CardModal = ({ cart }) => {
+const CardModal = ({cart}) => {
   return (
     <div className="cart-card">
       <a style={{ color: "#fff" }} className="" href={`/product/${cart.id}`}>

@@ -1,6 +1,8 @@
 import axios from "axios"
 import { createContext, useContext } from "react"
 import { useState } from "react"
+import { useNavigate } from "react-router-dom"
+import jwt_decode from "jwt-decode"
 
 export const CartContext = createContext()
 export const CartGlobalState = () => {
@@ -13,52 +15,55 @@ export const CartGlobalState = () => {
 export const CartContextProvider = ({ children }) => {
   const [cartList, setCartList] = useState([])
 
-
   const addToCart = async (product, quantity) => {
-    
+    const token = localStorage.getItem("token")
+    const { id } = jwt_decode(token)
     const body = {
-      userId: 1,
+      userId: id,
       products: [
         {
           id: product.id,
           quantity: quantity,
         },
-        {
-          id: 50,
-          quantity: 2,
-        },
       ],
     }
-    const res = await axios.post("https://dummyjson.com/carts/add", body) 
-      if(res.status === 200){
-        console.log("success")
-      }else {
-        console.log("error")
-      }
+    const res = await axios.post("https://dummyjson.com/carts/add", body)
+    if (res.status === 200) {
+     addToLocalStorage(product.id,quantity)
+    } else {
+      console.log("error")
+    }
   }
-  
-  /* {
 
-      const found = cartList.find(item => item.id === product.id)
-      if (found === undefined){
-        setCartList([...cartList,{...product,quantity}])
-      }else{
-      found.quantity+= quantity
-      setCartList([...cartList])
-    }}
-    const removeFromCart = (product) => {
-        setCartList(cartList.filter(item => item.id !== product.id))
+  const addToLocalStorage = (productId, productQuantity = 1) => {
+    if (!localStorage.getItem("cart")) {
+      localStorage.setItem("cart", JSON.stringify(productId,productQuantity))
+    }else{ 
+      const cart= JSON.parse(localStorage.getItem("cart"))
+      cart.push(product)
+      localStorage.setItem("cart", JSON.stringify(cart))
     }
-    const clearCart = () => {
-      setCartList([])
-    }
- */
+  }
+
+  const getCartFromUser = () => {
+    const res = axios.get(`https://dummyjson.com/carts/user/6`)
+    console.log(res.data)
+  }
+  const removeFromCart = (product) => {
+    setCartList(cartList.filter((item) => item.id !== product.id))
+  }
+  const clearCart = () => {
+    setCartList([])
+  }
 
   return (
     <CartContext.Provider
       value={{
         cartList,
         addToCart,
+        clearCart,
+        removeFromCart,
+        addToLocalStorage,
       }}
     >
       {children}
