@@ -19,12 +19,12 @@ export function ProductDetail() {
   const [cartModal, setCartModal] = useState(false)
   const { showCart, setShowCart } = authGlobalState(false)
 
-  const { addToCart, cartList,addToLocalStorage } = CartGlobalState()
+  const { addToCart, cartList, addToLocalStorage } = CartGlobalState()
   const navigate = useNavigate()
 
-  const onAdd = () => {
+  const onAddToCart = (productId, count) => {
     setShowCart(!showCart)
-    addToCart(product,count)
+    addToCart(productId, count)
   }
 
   const ToggleModal = () => {
@@ -123,7 +123,7 @@ export function ProductDetail() {
                 <div style={{ color: "white" }}>Buy</div>
               </button>
               <button className="cartButton">
-                <div className="carttext" onClick={() => onAdd()}>
+                <div className="carttext" onClick={() => onAddToCart(product?.id,count)}>
                   Add to cart
                 </div>
               </button>

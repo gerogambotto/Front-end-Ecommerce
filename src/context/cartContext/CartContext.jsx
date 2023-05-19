@@ -15,34 +15,55 @@ export const CartGlobalState = () => {
 export const CartContextProvider = ({ children }) => {
   const [cartList, setCartList] = useState([])
 
-  const addToCart = async (product, quantity) => {
+  const addToCart = async (productId, quantity) => {
     const token = localStorage.getItem("token")
     const { id } = jwt_decode(token)
     const body = {
       userId: id,
       products: [
         {
-          id: product.id,
+          id: productId,
           quantity: quantity,
         },
       ],
     }
     const res = await axios.post("https://dummyjson.com/carts/add", body)
+
     if (res.status === 200) {
-     addToLocalStorage(product.id,quantity)
+     addToLocalStorage(productId,quantity)
     } else {
       console.log("error")
     }
   }
 
   const addToLocalStorage = (productId, productQuantity = 1) => {
+    const productCart = {
+      productId: productId,
+      quantity: productQuantity
+    }
+
     if (!localStorage.getItem("cart")) {
-      localStorage.setItem("cart", JSON.stringify(productId,productQuantity))
-    }else{ 
-      const cart= JSON.parse(localStorage.getItem("cart"))
-      cart.push(product)
+      localStorage.setItem("cart", JSON.stringify([productCart]))
+    }
+    else{
+      const cart = JSON.parse(localStorage.getItem("cart"))
+      console.log(cart)
+      cart.push(productCart)
+      console.log(cart)
       localStorage.setItem("cart", JSON.stringify(cart))
     }
+
+
+
+
+
+
+
+    // else{
+    //   const cart= JSON.parse(localStorage.getItem("cart"))
+    //   cart.push(product)
+    //   localStorage.setItem("cart", JSON.stringify(cart))
+    // }
   }
 
   const getCartFromUser = () => {
