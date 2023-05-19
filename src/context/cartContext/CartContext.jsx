@@ -30,7 +30,7 @@ export const CartContextProvider = ({ children }) => {
     const res = await axios.post("https://dummyjson.com/carts/add", body)
 
     if (res.status === 200) {
-     addToLocalStorage(productId,quantity)
+      addToLocalStorage(productId, quantity)
     } else {
       console.log("error")
     }
@@ -39,31 +39,28 @@ export const CartContextProvider = ({ children }) => {
   const addToLocalStorage = (productId, productQuantity = 1) => {
     const productCart = {
       productId: productId,
-      quantity: productQuantity
+      quantity: productQuantity,
     }
 
     if (!localStorage.getItem("cart")) {
       localStorage.setItem("cart", JSON.stringify([productCart]))
-    }
-    else{
+    } else {
+      
       const cart = JSON.parse(localStorage.getItem("cart"))
+      localStorage.removeItem("cart")
+
+      const existingProduct = cart.find(p => p.productId === productId) 
+      console.log(existingProduct)
+      
+      if(existingProduct){
+        existingProduct.quantity += productQuantity
+      }
+      cart.push(existingProduct)
       console.log(cart)
-      cart.push(productCart)
-      console.log(cart)
-      localStorage.setItem("cart", JSON.stringify(cart))
+      
+/* 
+      localStorage.setItem("cart", JSON.stringify(cart))  */
     }
-
-
-
-
-
-
-
-    // else{
-    //   const cart= JSON.parse(localStorage.getItem("cart"))
-    //   cart.push(product)
-    //   localStorage.setItem("cart", JSON.stringify(cart))
-    // }
   }
 
   const getCartFromUser = () => {
