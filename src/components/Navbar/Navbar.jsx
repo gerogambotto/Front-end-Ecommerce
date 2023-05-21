@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import React from "react";
 import "./styles.scss";
 import InputSearch from "../Search/imputSearch.jsx";
 import HomeButton from "../HomeButton/HomeButton.jsx";
-import { Navigate, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import categoriesClassification from "../../../categoriesClassification.json";
 import Categories from "../Categories/Categories.jsx";
 import { authGlobalState } from "../../context/authcontext/AuthContext";
@@ -52,8 +52,11 @@ export const Navbar = () => {
       </div>
       <div className="container-fluid">
         <div className="navbar-bottom d-flex justify-content-center align-items-center">
-          {categoriesClassification.map((e) => (
-            <Categories category={e} key={Object.keys(e)} />
+          {categoriesClassification.map((e, key) => (
+            <Categories
+              category={e}
+              key={key}
+              border={key === categoriesClassification.length-1 ? '' : "custom-border"}/>
           ))}
         </div>
       </div>
