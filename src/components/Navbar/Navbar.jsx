@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import React from "react";
 import "./styles.scss";
 import InputSearch from "../Search/imputSearch.jsx";
 import HomeButton from "../HomeButton/HomeButton.jsx";
-import { Navigate, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import categoriesClassification from "../../../categoriesClassification.json";
 import Categories from "../Categories/Categories.jsx";
 import { authGlobalState } from "../../context/authcontext/AuthContext";
