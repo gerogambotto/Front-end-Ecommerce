@@ -1,0 +1,40 @@
+@import '../../styles/variables.scss';
+
+
+.home-gallery{
+
+    display: flex;
+    width: 100%;
+
+    .text-img-conteiner{
+        width: 0px;        
+        flex-grow: 1;
+        object-fit: cover;
+        opacity: .8;
+        transition: .5s ease;
+    }
+    .image-home-gallery{
+        height: 200px;
+    }  
+    .text-img-conteiner:hover{
+        cursor: pointer;
+        width: 150px;
+        opacity: 1;
+        filter: contrast(120%)
+    }
+    .text-image-hover{
+        visibility: hidden;
+        text-transform: capitalize;
+        position: absolute;
+        top: 8px;
+        right: 16px;
+        background: white;
+        padding: 10px;
+        transition: .5s ease;
+    }
+    .text-img-conteiner:hover .text-image-hover{
+       visibility: visible;
+    }
+  
+
+}

@@ -1,12 +1,12 @@
-import "./App.scss"
-import { Route, Routes } from "react-router-dom"
-import { RegisterPage } from "./pages/RegisterPage/RegisterPage.jsx"
-import ProductsPage from "./pages/ProductsPage/ProductsPage.jsx"
-import { LoginPage } from "./pages/LoginPage/LoginPage.jsx"
-import { HomePage } from "./pages/HomePage/HomePage.jsx"
-import { ProductDetail } from "./pages/Product/ProductDetail.jsx"
-import ProductsCategory from "./pages/Category/ProductCategory"
-import { AuthProvider } from "./context/authcontext/AuthContext"
+import "./App.scss";
+import { Route, Routes } from "react-router-dom";
+import { RegisterPage } from "./pages/RegisterPage/RegisterPage.jsx";
+import ProductsPage from "./pages/ProductsPage/ProductsPage.jsx";
+import { LoginPage } from "./pages/LoginPage/LoginPage.jsx";
+import { HomePage } from "./pages/HomePage/HomePage.jsx";
+import { ProductDetail } from "./pages/Product/ProductDetail.jsx";
+import ProductsCategory from "./pages/Category/ProductCategory";
+import { AuthProvider } from "./context/authcontext/AuthContext";
 
 function App() {
   return (
@@ -23,7 +23,7 @@ function App() {
         />
       </Routes>
     </AuthProvider>
-  )
+  );
 }
 
-export default App
+export default App;
