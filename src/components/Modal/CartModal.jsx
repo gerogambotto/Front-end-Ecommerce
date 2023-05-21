@@ -1,8 +1,9 @@
-import { Modal } from "react-bootstrap"
+import { Modal, ModalFooter } from "react-bootstrap"
 import { authGlobalState } from "../../context/authcontext/AuthContext"
 import CardModal from "../CardModal/CardModal"
 import axios from "axios"
 import { useEffect, useState } from "react"
+import "./styles.scss"
 
 const CartModal = () => {
   const { showCart, setShowCart } = authGlobalState(false)
@@ -40,6 +41,10 @@ const CartModal = () => {
             <CardModal key={item.id} cart={item} />
           ))}
         </Modal.Body>
+        <ModalFooter className="" ><div className="number-container">
+          <span>Subtotal $</span>
+          <span>Total $ </span>
+        </div></ModalFooter>
       </Modal>
     </>
   )

@@ -57,33 +57,6 @@ export function ProductDetail() {
   return (
     <Layout>
       <div className="categories"></div>
-      {cartModal && (
-        <Container fluid className="cart-modal">
-          <Row className="cart-modal-header">
-            <Col sm={10}>
-              <h3>Cart</h3>
-            </Col>
-            <Col sm={2}>
-              <button className="" onClick={() => ToggleModal()}>
-                X
-              </button>
-            </Col>
-          </Row>
-          <Row>
-            <CartModal  />
-          </Row>
-          <Row className="d-flex justify-content-center align-items-center">
-            <div>sub total</div>
-          </Row>
-          <Row className="d-flex justify-content-center align-items-center">
-            <div>total</div>
-          </Row>
-          <Row className="d-flex justify-content-center align-items-center">
-            <button onClick={() => navigate("/cart")}>Checkout</button>
-          </Row>
-        </Container>
-      )}
-
       <Container>
         {isLoading ? (
           <div className="loader-container row justify-content-center align-items-center">
@@ -101,12 +74,12 @@ export function ProductDetail() {
                 Vendido por <strong>{product?.brand}</strong>
               </div>
               <div className="price mt-4 mb-3"> $ {product?.price}</div>
-              <div>
-                <button className="border-0 ml-2 " onClick={decrement}>
-                  <img className="minus" src={minus} alt="minus" />
+              <div className="d-flex mt-3">
+                <button className="border-0 mr-3 " onClick={decrement}>
+                  <img className="" src={minus} alt="minus" />
                 </button>
                 <div>{count && count}</div>
-                <button onClick={increment} className="add mr-">
+                <button onClick={increment} className="border-0 ml-3">
                   <img src={add} alt="add" />
                 </button>
               </div>
@@ -118,6 +91,7 @@ export function ProductDetail() {
               <img className="tarjetas" src={mastercard} alt="mastercard" />
               <p className="mediosDePago"> Ver todos los medios de pago</p>
               <div className="tiempoEnvio"></div>
+              <div className="d-flex w-100">
               <button className="buyButton">
                 <div style={{ color: "white" }}>Buy</div>
               </button>
@@ -125,7 +99,7 @@ export function ProductDetail() {
                 <div className="carttext" onClick={() => onAddToCart(product?.id,count)}>
                   Add to cart
                 </div>
-              </button>
+              </button></div>
             </Col>
 
             <Col sm={12} style={{ marginTop: "30px" }}>

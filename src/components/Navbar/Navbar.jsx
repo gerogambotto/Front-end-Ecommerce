@@ -22,7 +22,7 @@ export const Navbar = () => {
           <div className="col-sm-8 d-flex justify-content-center align-items-center">
             <InputSearch />
             <button
-              className="ml-3 cart-button border-0 "
+              className="ml-3 cart-button border-0"
               onClick={() => navigate("/cart")}
             >
               <img className="cart-icon" src={cart} alt="cart-icon" />
@@ -47,12 +47,12 @@ export const Navbar = () => {
             ) : (
               <div className="login-register">
                 <button
-                  className="login-register-button"
+                  className="register-button"
                   onClick={() => logout()}
                 >
                   Log out
                 </button>
-                <button onClick={() => setShowCart(!showCart)}>Cart</button>
+                <button className="register-button ml-3" onClick={() => setShowCart(!showCart)}>Cart</button>
               </div>
             )}
           </div>
