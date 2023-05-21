@@ -2,7 +2,6 @@
 
 .categories-container{
   display: flex;
-  margin: 0 1rem;
 
   .sub-categories{
     display: flex;
@@ -13,7 +12,26 @@
 
     h3{
       text-transform: capitalize;
-      margin: 0 1rem;
+      padding: 0 1rem;
+      margin: 0;
+      min-width: 200px;
+      text-align: center;
+
+      &.custom-border{
+        border-right: 2px solid $primaryColor;
+      }
+    }
+  }
+
+  .bottomBorder{
+    height: 2px;
+    width: 100%;
+
+    &.active{
+      background-color: $primaryColor;
+    }
+    &.inactive{
+      background-color: black;
     }
   }
 
@@ -24,7 +42,7 @@
     position: absolute;
     left: 0;
     width: 100%;
-    top: 10rem;
+    top: 10.3rem;
     background-color: #fff;
     height: 80px;
     display: flex;
