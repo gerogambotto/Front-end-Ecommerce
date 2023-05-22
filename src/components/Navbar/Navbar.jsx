@@ -1,4 +1,4 @@
-import React, { useEffect } from "react"
+import React from "react"
 import "./styles.scss"
 import InputSearch from "../Search/imputSearch.jsx"
 import HomeButton from "../HomeButton/HomeButton.jsx"
@@ -7,9 +7,10 @@ import categoriesClassification from "../../../categoriesClassification.json"
 import Categories from "../Categories/Categories.jsx"
 import { authGlobalState } from "../../context/authcontext/AuthContext"
 import cart from "../../../public/assets/cart.svg"
-
 export const Navbar = () => {
-  const { isLoggedIn, logout, showCart, setShowCart } = authGlobalState()
+  const { isLoggedIn, logout } = authGlobalState()
+  const { showCart, setShowCart } = authGlobalState(false)
+
   const navigate = useNavigate()
 
   return (
@@ -25,7 +26,7 @@ export const Navbar = () => {
               className="ml-3 cart-button border-0"
               onClick={() => navigate("/cart")}
             >
-              <img className="cart-icon" src={cart} alt="cart-icon" />
+              <img src={cart} className="cart-icon" alt="cart" />
             </button>
           </div>
           <div className="col-sm-2 d-flex justify-content-end align-items-center">
@@ -52,7 +53,12 @@ export const Navbar = () => {
                 >
                   Log out
                 </button>
-                <button className="register-button ml-3" onClick={() => setShowCart(!showCart)}>Cart</button>
+                <button
+                  className="register-button ml-3"
+                  onClick={() => setShowCart(!showCart)}
+                >
+                  Cart
+                </button>
               </div>
             )}
           </div>
@@ -60,8 +66,16 @@ export const Navbar = () => {
       </div>
       <div className="container-fluid">
         <div className="navbar-bottom d-flex justify-content-center align-items-center">
-          {categoriesClassification.map((e) => (
-            <Categories category={e} key={e.id} />
+          {categoriesClassification.map((e, key) => (
+            <Categories
+              category={e}
+              key={key}
+              border={
+                key === categoriesClassification.length - 1
+                  ? ""
+                  : "custom-border"
+              }
+            />
           ))}
         </div>
       </div>

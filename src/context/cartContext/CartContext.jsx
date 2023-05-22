@@ -1,7 +1,6 @@
 import axios from "axios"
 import { createContext, useContext } from "react"
 import { useState } from "react"
-import { useNavigate } from "react-router-dom"
 import jwt_decode from "jwt-decode"
 
 export const CartContext = createContext()
@@ -44,9 +43,7 @@ export const CartContextProvider = ({ children }) => {
 
     if (!localStorage.getItem("cart")) {
       localStorage.setItem("cart", JSON.stringify([productCart]))
-
     } else {
-
       const cart = JSON.parse(localStorage.getItem("cart"))
       const existingProduct = cart.find((p) => p.productId === productId)
       if (existingProduct) {
@@ -62,18 +59,38 @@ export const CartContextProvider = ({ children }) => {
     const res = axios.get(`https://dummyjson.com/carts/user/6`)
     console.log(res.data)
   }
-  const removeFromCart = (product) => {
+ /*  const removeFromCart = (product) => {
     setCartList(cartList.filter((item) => item.id !== product.id))
+  } */
+
+  const cartProducts = JSON.parse(localStorage.getItem("cart"))
+  const [cartData, setCartData] = useState([])
+  const getCartProducts = async () => {
+    try {
+      const promises = cartProducts.map(async (item) => {
+        const res = await axios.get(
+          `https://dummyjson.com/products/${item.productId}`
+        )
+        return res.data
+      })
+
+      const cartAwaited = await Promise.all(promises)
+      setCartData(cartAwaited)
+    } catch (error) {
+      console.log(error)
+    }
   }
 
+  
 
   return (
     <CartContext.Provider
       value={{
         cartList,
         addToCart,
-        removeFromCart,
         addToLocalStorage,
+        getCartProducts,
+        cartData,
       }}
     >
       {children}

@@ -1,19 +1,27 @@
 import "./styles.scss"
 import {useState} from "react";
 
-function Categories({category}) {
+function Categories({category, border}) {
+
   const [showSubCategories, setShowSubCategories] = useState(false)
 
   return (
     <div className='categories-container'>
-      <div
-        className='sub-categories'
-        onMouseEnter={()=>setShowSubCategories(true)}
-        onMouseLeave={()=>setShowSubCategories(false)}
-      >
-        <h3>
-          {Object.keys(category)}
-        </h3>
+      <div>
+        <div
+          className='sub-categories'
+          onMouseEnter={()=> {
+            setShowSubCategories(true)
+          }}
+          onMouseLeave={()=> {
+            setShowSubCategories(false)
+          }}
+        >
+          <h3 className={border}>
+            {Object.keys(category)}
+          </h3>
+        </div>
+        <div className={`bottomBorder ${showSubCategories ? 'active' : 'inactive'}`}></div>
       </div>
       {
         showSubCategories &&

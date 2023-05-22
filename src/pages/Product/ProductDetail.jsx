@@ -11,6 +11,7 @@ import { CartGlobalState } from "../../context/cartContext/CartContext"
 import { authGlobalState } from "../../context/authcontext/AuthContext"
 import add from "./add.svg"
 import minus from "./dash.svg"
+import Swal from 'sweetalert2'
 
 export function ProductDetail() {
   const { id } = useParams()
@@ -23,6 +24,12 @@ export function ProductDetail() {
 
   const onAddToCart = (productId, count) => {
     addToCart(productId, count)
+    
+    Swal.fire(
+      'Product Added!',
+      'Go and check your cart!',
+      'success'
+    )
   }
 
   const ToggleModal = () => {
@@ -40,7 +47,6 @@ export function ProductDetail() {
   useEffect(() => {
     getProduct()
   }, [])
-
 
   const [count, setCount] = useState(1)
   const increment = () => {
@@ -75,31 +81,36 @@ export function ProductDetail() {
               </div>
               <div className="price mt-4 mb-3"> $ {product?.price}</div>
               <div className="d-flex mt-3">
-                <button className="border-0 mr-3 " onClick={decrement}>
-                  <img className="" src={minus} alt="minus" />
+                <button className="border-0 mr-3 minusadd " onClick={decrement}>
+                  <img src={minus} alt="minus" />
                 </button>
                 <div>{count && count}</div>
-                <button onClick={increment} className="border-0 ml-3">
+                <button onClick={increment} className="border-0 ml-3 minusadd">
                   <img src={add} alt="add" />
                 </button>
               </div>
               <div className="cuotas mt-2">
                 Hasta 6 cuotas sin interés de ${Math.round(product?.price / 6)}
               </div>
-              <div className="tarjetasDeCredito"></div>
-              <img className="tarjetas" src={visa} alt="visa" />
-              <img className="tarjetas" src={mastercard} alt="mastercard" />
+              <div className="cards-container">
+                <img className="cards mr-4" src={visa} alt="visa" />
+                <img className="cards" src={mastercard} alt="mastercard" />
+              </div>
               <p className="mediosDePago"> Ver todos los medios de pago</p>
               <div className="tiempoEnvio"></div>
-              <div className="d-flex w-100">
-              <button className="buyButton">
-                <div style={{ color: "white" }}>Buy</div>
-              </button>
-              <button className="cartButton">
-                <div className="carttext" onClick={() => onAddToCart(product?.id,count)}>
-                  Add to cart
-                </div>
-              </button></div>
+              <div className="d-flex flex-column justify-content-center align-items-center ">
+                <button className="buyButton">
+                  <div style={{ color: "white" }}>Buy</div>
+                </button>
+                <button className="cartButton mt-3">
+                  <div
+                    className="carttext"
+                    onClick={() => onAddToCart(product?.id, count)}
+                  >
+                    Add to cart
+                  </div>
+                </button>
+              </div>
             </Col>
 
             <Col sm={12} style={{ marginTop: "30px" }}>

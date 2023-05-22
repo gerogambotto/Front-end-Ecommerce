@@ -6,6 +6,12 @@
   cursor: pointer;
   width: 30px;
   height: 40px;
+  background-color: transparent;
+  .cart-icon {
+        border: none;
+        cursor: pointer;
+       
+      }
 }
   .navbar-top {
     padding-top: 2rem;
@@ -36,10 +42,7 @@
         transform: scale(1.1);
       }
       
-      .cart-icon {
-        border: none;
-        cursor: pointer;
-      }
+      
     }
   }
 }

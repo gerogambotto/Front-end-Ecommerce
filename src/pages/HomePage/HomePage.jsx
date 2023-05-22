@@ -1,37 +1,34 @@
-import React, { useEffect, useState } from 'react'
-import { Layout } from '../../components/Layout/Layout.jsx'
-import { CarouselProducts } from '../../components/CarouselProducts/CarouselProducts.jsx'
-import './styles.scss'
-import categoriesClassification from '../../../categoriesClassification.json'
-import { authGlobalState } from '../../context/authcontext/AuthContext.jsx'
-import Modal from 'react-bootstrap/Modal';
+import React, { useEffect, useState } from "react";
+import { Layout } from "../../components/Layout/Layout.jsx";
+import { CarouselProducts } from "../../components/CarouselProducts/CarouselProducts.jsx";
+import "./styles.scss";
+import categoriesClassification from "../../../categoriesClassification.json";
+import HomeGallery from "../../components/HomeGallery/HomeGallery.jsx";
 
 export function HomePage() {
-  const [products, setProducts] = useState(null)
-
-  const { showCart, setShowCart } = authGlobalState(false)
+  const [products, setProducts] = useState(null);
 
   const getProduct = async () => {
-    const products = await fetch(`https://dummyjson.com/products?limit=100`)
-    const data = await products.json()
-    setProducts(data)
-  }
+    const products = await fetch(`https://dummyjson.com/products?limit=100`);
+    const data = await products.json();
+    setProducts(data);
+  };
 
   useEffect(() => {
-    getProduct()
-  }, [])
+    getProduct();
+  }, []);
 
   const filterByCategories = (arrayOfFilters) => {
-    const filteredProducts = []
+    const filteredProducts = [];
     products?.products?.map((e) => {
-      if (arrayOfFilters.includes(e.category)) filteredProducts.push(e)
-    })
-    return filteredProducts
-  }
+      if (arrayOfFilters.includes(e.category)) filteredProducts.push(e);
+    });
+    return filteredProducts;
+  };
 
   return (
     <Layout>
-      <section className='home-section mt-5' onClick={()=>setShowCart(false)}>
+      <section className="home-section mt-5">
         {categoriesClassification.map((e) => (
           <CarouselProducts
             categories={Object.keys(e)}
@@ -39,9 +36,10 @@ export function HomePage() {
             key={Object.keys(e)}
           />
         ))}
+        <HomeGallery />
       </section>
 
       
     </Layout>
-  )
+  );
 }

@@ -17,10 +17,9 @@ export function RegisterPage() {
 
   const handleSubmit = async (event) => {
     event.preventDefault()
-    
     try {
       if(validEmail && validPassword){
-        await register({ email, password ,rePassword})
+        await register(email, password)
       }
     } catch (error) {
       console.error("Register error", error)

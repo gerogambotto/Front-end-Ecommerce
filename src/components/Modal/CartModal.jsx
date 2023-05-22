@@ -1,5 +1,6 @@
-import { Modal, ModalFooter } from "react-bootstrap"
+import { Button, Modal, ModalFooter } from "react-bootstrap"
 import { authGlobalState } from "../../context/authcontext/AuthContext"
+import { CartGlobalState } from "../../context/cartContext/CartContext"
 import CardModal from "../CardModal/CardModal"
 import axios from "axios"
 import { useEffect, useState } from "react"
@@ -7,44 +8,39 @@ import "./styles.scss"
 
 const CartModal = () => {
   const { showCart, setShowCart } = authGlobalState(false)
-  const cartProducts = JSON.parse(localStorage.getItem("cart"))
+  const { cartData, getCartProducts} = CartGlobalState()
 
-  const [cartData, setCartData] = useState([])
-
-  const getCartProducts = async () => {
-    try {
-      const promises = cartProducts.map(async (item) => {
-        const res = await axios.get(
-          `https://dummyjson.com/products/${item.productId}`
-        )
-        return res.data
-      })
-
-      const cartAwaited = await Promise.all(promises)
-      setCartData(cartAwaited)
-    } catch (error) {
-      console.log(error)
-    }
-  }
   useEffect(() => {
     getCartProducts()
   }, [])
 
   return (
     <>
-      <Modal show={!!showCart} onHide={() => setShowCart()} animation={false}>
+      <Modal
+        id="carrito-modal"
+        show={!!showCart}
+        onHide={() => setShowCart()}
+        animation={false}
+      >
         <Modal.Header>
           <Modal.Title>Cart</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          {cartData?.map((item) => (
-            <CardModal key={item.id} cart={item} />
-          ))}
+          {cartData?.length === 0 ? (
+            <div> Your cart is empty</div>
+          ) : (
+            cartData?.map((item) => <CardModal key={item.id} cart={item} />)
+          )}
         </Modal.Body>
-        <ModalFooter className="" ><div className="number-container">
-          <span>Subtotal $</span>
-          <span>Total $ </span>
-        </div></ModalFooter>
+        <ModalFooter className="footer-container">
+          <div className="number-container">
+            <span>Subtotal: $</span>
+            <span>Total: $  </span>
+          </div>
+        </ModalFooter>
+        <ModalFooter className="modal-buy-botton">
+          <button className="modal-buy-botton-button">Finish Buy</button>
+        </ModalFooter>
       </Modal>
     </>
   )

@@ -1,5 +1,6 @@
 import "./styles.scss"
 const CardModal = ({cart}) => {
+  
   return (
     <div className="cart-card">
       <a style={{ color: "#fff" }} className="" href={`/product/${cart.id}`}>
@@ -11,11 +12,11 @@ const CardModal = ({cart}) => {
           />
         </div>
       </a>
-      <div >
+      <div className="d-flex justify-content-center align-items-center">
         <p className="title-cart">{cart.title}</p>
         <p className="price-cart">$ {cart.price}</p>
         <p>Item Count</p>
-        <p>Delete</p>
+        <p>X</p>
       </div>
     </div>
   )

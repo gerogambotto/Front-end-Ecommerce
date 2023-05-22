@@ -1,4 +1,6 @@
 @import "../../styles/variables.scss";
+@import "../../styles/variables";
+
 $greendefault: #279d2e;
 
 $dark: #373737;
@@ -11,12 +13,15 @@ $font-size--large-headline--desktop: 4.8rem;
 $font-size--large-text--mobile: 1.6rem;
 $font-size--large-text--desktop: 2rem;
 
-
+ .minusadd{
+      width: 40px;
+    }
 .productContainer {
   min-height: 100vh;
   .productImage{
     display: flex;
     justify-content: center;
+   
   }
   
 }
@@ -40,19 +45,18 @@ $font-size--large-text--desktop: 2rem;
   justify-content: space-between;
 }
 .cartButton {
-  text-decoration: none;
   background-color: #fff;
   box-sizing: border-box;
   color: #fff;
+  text-decoration: none;
   align-items: center;
   line-height: 16px;
+  width: 100%;
   text-transform: uppercase;
   padding: 13px;
-  width: 50%;
   font-weight: 500;
-  cursor: pointer;
-  margin-left: 15px;
   border-radius: 40px;
+  cursor: pointer;
 }
 .buyButton {
   background-color: $greendefault;
@@ -61,7 +65,7 @@ $font-size--large-text--desktop: 2rem;
   text-decoration: none;
   align-items: center;
   line-height: 16px;
-  width: 30%;
+  width: 100%;
   text-transform: uppercase;
   padding: 13px;
   font-weight: 500;
@@ -78,9 +82,17 @@ $font-size--large-text--desktop: 2rem;
   font-size: 1rem;
   color: #3fa7e0;
 }
-.tarjetas {
-  width: 120px;
+.cards {
   height: 90px;
+}
+.modal-buy-botton{
+  .modal-buy-botton-button{
+    height: 100%;
+    width: 100%;
+    background-color: $primaryColor;
+    border: none;
+    color: black;
+  }
 }
 .h_line {
   border-bottom: 1px solid rgb(80, 80, 78);
