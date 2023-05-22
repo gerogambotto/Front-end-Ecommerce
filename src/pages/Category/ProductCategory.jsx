@@ -63,13 +63,13 @@ const ProductsCategory = () => {
             <div className='row'>
               {filteredProducts
                 ? filteredProducts.map((product) => (
-                  <div className='col-4 mb-4'>
-                    <ProductCard key={product.id} product={product} />
+                  <div className='col-4 mb-4' key={product.id}>
+                    <ProductCard product={product} />
                   </div>
                 ))
                 : products?.map((product) => (
-                  <div className='col-4'>
-                    <ProductCard key={product.id} product={product} />
+                  <div className='col-4' key={product.id}>
+                    <ProductCard  product={product} />
                   </div>
                 ))}
             </div>
