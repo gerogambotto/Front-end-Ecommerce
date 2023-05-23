@@ -74,7 +74,7 @@ export function ProductDetail() {
               <img src={product?.images[0]} alt="" className=" mt-5"></img>
             </Col>
             <Col sm={4}>
-              <div className="productBrand mt-5">{product?.brand}</div>
+              <div className="productBrand mt-5 mb-3">{product?.brand}</div>
               <div className="productName ">{product?.title}</div>
               <div className="subtitle mt-3">
                 Vendido por <strong>{product?.brand}</strong>
