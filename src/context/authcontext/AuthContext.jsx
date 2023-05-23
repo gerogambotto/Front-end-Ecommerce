@@ -19,11 +19,13 @@ export const AuthProvider = ({ children }) => {
   const [showCart, setShowCart] = useState(false)
 
   const login = async (email, password) => {
+    console.log(email,password)
     const body = {
-      username: "atuny0",
-      password: "9uQFF1Lh",
+      "username": email,
+      "password": password, 
     }
-    const res = await axios.post("https://dummyjson.com/auth/login", body)
+    const res = await axios.post(`${VITE_APP_BACKEND_API}/token`, body)
+    console.log(res)
     if (res.status === 200) {
       localStorage.setItem("token", res.data.token)
       setIsLoggedIn(true)
