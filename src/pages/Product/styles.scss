@@ -1,7 +1,6 @@
 @import "../../styles/variables.scss";
 @import "../../styles/variables";
 
-$greendefault: #279d2e;
 
 $dark: #373737;
 $light: #f4f4f4;
@@ -59,7 +58,7 @@ $font-size--large-text--desktop: 2rem;
   cursor: pointer;
 }
 .buyButton {
-  background-color: $greendefault;
+  background-color: $primaryColor;
   box-sizing: border-box;
   color: #fff;
   text-decoration: none;
@@ -74,7 +73,7 @@ $font-size--large-text--desktop: 2rem;
 }
 .carttext {
   text-decoration: none;
-  color: $greendefault;
+  color: $primaryColor;
 }
 .mediosDePago {
   font-weight: 400;
@@ -100,10 +99,10 @@ $font-size--large-text--desktop: 2rem;
   margin-bottom: 30px;
 }
 .productBrand {
-  font-weight: 400;
   line-height: 28px;
-  font-size: 16px;
-  color: #0cb9c2;
+  font-size: 18px;
+  color:$primaryColor;
+  font-weight: 600;
 }
 .productName {
   font-weight: 500;
@@ -116,13 +115,13 @@ $font-size--large-text--desktop: 2rem;
   font-weight: 600;
   line-height: 20px;
   font-size: 1rem;
-  color: $greendefault;
+  color: black;
 }
 .price {
   font-weight: 700;
   line-height: 56px;
   font-size: 45px;
-  color: $greendefault;
+  color: $primaryColor;
 }
 .responsiveImg {
   max-width: 100%;

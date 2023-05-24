@@ -12,6 +12,7 @@ export function HomePage() {
     const products = await fetch(`https://dummyjson.com/products?limit=100`);
     const data = await products.json();
     setProducts(data);
+    
   };
 
   useEffect(() => {

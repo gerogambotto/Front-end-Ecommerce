@@ -1,41 +1,49 @@
 import "./styles.scss"
-import {useState} from "react";
+import { useState } from "react"
 
-function Categories({category, border}) {
-
+function Categories({ category, border }) {
   const [showSubCategories, setShowSubCategories] = useState(false)
 
   return (
-    <div className='categories-container'>
+    <div className="categories-container">
       <div>
         <div
-          className='sub-categories'
-          onMouseEnter={()=> {
+          className="sub-categories"
+          onMouseEnter={() => {
             setShowSubCategories(true)
           }}
-          onMouseLeave={()=> {
+          onMouseLeave={() => {
             setShowSubCategories(false)
           }}
         >
-          <h3 className={border}>
-            {Object.keys(category)}
-          </h3>
+          <h3 className={border}>{Object.keys(category)}</h3>
         </div>
-        <div className={`bottomBorder ${showSubCategories ? 'active' : 'inactive'}`}></div>
-      </div>
-      {
-        showSubCategories &&
         <div
-          className='sub-categories-modal'
-            onMouseEnter={()=>setShowSubCategories(true)}
-            onMouseLeave={()=>setShowSubCategories(false)}
+          onMouseEnter={() => {
+            setShowSubCategories(true)
+          }}
+          onMouseLeave={() => {
+            setShowSubCategories(false)
+          }}
+          className={`bottomBorder ${
+            showSubCategories ? "active" : "inactive"
+          }`}
+        ></div>
+      </div>
+      {showSubCategories && (
+        <div
+          className="sub-categories-modal"
+          onMouseEnter={() => setShowSubCategories(true)}
+          onMouseLeave={() => setShowSubCategories(false)}
         >
-          {Object.values(category)[0].map(e => <a className='sub-categories' href={`/products/category/${e}`} >
-          {e}</a>)}
+          {Object.values(category)[0].map((e) => (
+            <a className="sub-categories" href={`/products/category/${e}`}>
+              <span className="sub-categories-title">{e}</span>
+            </a>
+          ))}
         </div>
-      }
+      )}
     </div>
-
   )
 }
 export default Categories
