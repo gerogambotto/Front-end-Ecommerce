@@ -4,7 +4,7 @@ import "./styles.scss"
 import { authGlobalState } from "../../context/authcontext/AuthContext.jsx"
 
 export function LoginPage() {
-  const regex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/
+  const regex = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/
 
   const { login } = authGlobalState()
   const [password, setPassword] = useState("")
@@ -16,9 +16,8 @@ export function LoginPage() {
 
   const [validEmail, setValidEmail] = useState(false)
 
-  function isEmail(emailAdress) {
-    if (emailAdress.match(regex)) return true
-    else return false
+  function isEmail(emailAddress) {
+    return !!emailAddress.match(regex);
   }
 
   const handleSubmit = async (event) => {
