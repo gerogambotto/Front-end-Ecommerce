@@ -8,7 +8,6 @@
     justify-content: center;
     align-items: center;
     height: 70px;
-    cursor: pointer;
 
     h3{
       text-transform: capitalize;
@@ -61,10 +60,12 @@
       color: $primaryColor;
       font-weight: 700;
       line-height: 30px;
+      .sub-categories-title{
+        cursor: pointer;
+      }
       
     }
     .sub-categories:hover{
-      background-color: red;
     }
   }
 }

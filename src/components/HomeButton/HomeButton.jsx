@@ -1,6 +1,7 @@
 import React from "react";
 import {useNavigate} from "react-router-dom";
 import "./styles.scss";
+import logo from '../../../public/assets/logos/logo.png'
 
 function HomeButton() {
   const navigate = useNavigate();
@@ -9,7 +10,7 @@ function HomeButton() {
     <div className="menu">
       <img
         className="logo"
-        src="/assets/logos/telar_logo.png"
+        src={logo}
         alt='logo'
         onClick={()=>navigate('/')}
       />
