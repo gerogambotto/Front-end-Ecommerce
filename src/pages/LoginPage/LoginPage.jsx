@@ -16,9 +16,8 @@ export function LoginPage() {
 
   const [validEmail, setValidEmail] = useState(false)
 
-  function isEmail(emailAdress) {
-    if (emailAdress.match(regex)) return true
-    else return false
+  function isEmail(emailAddress) {
+    return !!emailAddress.match(regex);
   }
 
   const handleSubmit = async (event) => {
