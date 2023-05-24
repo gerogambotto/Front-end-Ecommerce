@@ -21,26 +21,19 @@ export function LoginPage() {
     else return false
   }
 
-
-
   const handleSubmit = async (event) => {
     event.preventDefault()
     try {
       if (validEmail && validPassword) {
         await login(email, password)
       }
-    } catch (error) {
-    }
+    } catch (error) {}
   }
-
-
 
   useEffect(() => {
     setValidEmail(isEmail(email))
   }, [email])
 
-
- 
   useEffect(() => {
     if (validEmail) {
       setMailError(null)
@@ -48,9 +41,6 @@ export function LoginPage() {
       setMailError("Invalid email")
     }
   }, [validEmail])
-
-
-
 
   useEffect(() => {
     if (password.length <= 4) {
@@ -61,7 +51,6 @@ export function LoginPage() {
       setPasswordError(null)
     }
   }, [password])
-
 
   return (
     <Layout>
@@ -90,12 +79,17 @@ export function LoginPage() {
               </div>
             </div>
             <div>
-              <button disabled={!validEmail || !validPassword} className="login-button">Login</button>
+              <button
+                disabled={!validEmail || !validPassword}
+                className="login-button"
+              >
+                Login
+              </button>
               {mailError && email.length !== 0 && (
-                <h5 style={{ color: "blue" }}>{mailError}</h5>  
+                <h5 style={{ color: "blue" }}>{mailError}</h5>
               )}
-              {passwordError && password.length !== 0 &&(
-                <h5 style={{ color: "red" }}>{passwordError}</h5>  
+              {passwordError && password.length !== 0 && (
+                <h5 style={{ color: "red" }}>{passwordError}</h5>
               )}
             </div>
           </form>

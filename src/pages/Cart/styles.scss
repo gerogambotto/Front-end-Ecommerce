@@ -1,0 +1,36 @@
+.cart-container {
+  min-height: 75vh;
+  .cart-title {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+  }
+  .cart-items-container {
+    border: none;
+    background-color: #fff;
+    border: 1px solid ;
+    border-radius: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 150px;
+  }
+  .cart-item {
+    display: flex;
+
+  }
+  .cart-summary-container{
+    border: none;
+    background-color: #fff;
+    border: 1px solid ;
+    border-radius: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 150px;
+
+    .cart-summary{
+
+    }
+  }
+}

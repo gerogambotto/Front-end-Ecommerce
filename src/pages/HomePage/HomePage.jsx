@@ -38,6 +38,8 @@ export function HomePage() {
         ))}
         <HomeGallery />
       </section>
+
+      
     </Layout>
   );
 }

@@ -16,6 +16,7 @@ export const AuthProvider = ({ children }) => {
   const navigate = useNavigate()
 
   const [isLoggedIn, setIsLoggedIn] = useState(false)
+  const [showCart, setShowCart] = useState(false)
 
   const login = async (email, password) => {
     const body = {
@@ -37,9 +38,9 @@ export const AuthProvider = ({ children }) => {
       "hashed_password": password
     }
     const res = await axios.post(`${VITE_APP_BACKEND_API}/user`, body)
-
+    console.log(res)
     if (res.status === 200){
-      localStorage.setItem('token', res.data.token)
+      localStorage.setItem('token', res.data.access_token)
       setIsLoggedIn(true)
       navigate('/')
     }
@@ -63,6 +64,8 @@ export const AuthProvider = ({ children }) => {
         register,
         isLoggedIn,
         logout,
+        showCart,
+        setShowCart
       }}
     >
       {children}
