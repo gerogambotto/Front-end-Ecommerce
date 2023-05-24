@@ -1,3 +1,4 @@
+import './styles.scss'
 const Filters = ({ setFilters, filters, maxPrice }) => {
   const handleChangeMaxPrice = (event) => {
     setFilters({ maxPrice: event.target.value })
@@ -6,7 +7,7 @@ const Filters = ({ setFilters, filters, maxPrice }) => {
   return (
     <section className='filters'>
       <div className='filter-container'>
-        <label htmlFor='price'>Price from </label>
+        <label htmlFor='price' className='filter-label'>Price from </label>
         <input
           type='range'
           id='price'
@@ -15,7 +16,7 @@ const Filters = ({ setFilters, filters, maxPrice }) => {
           onChange={handleChangeMaxPrice}
           value={filters.maxPrice}
         />
-        <span>{maxPrice}</span>
+        <span className='filter-input'>{maxPrice}</span>
       </div>
     </section>
   )

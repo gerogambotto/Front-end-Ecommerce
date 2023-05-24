@@ -29,7 +29,7 @@ export const Navbar = () => {
               <img src={cart} className="cart-icon" alt="cart" />
             </button>
           </div>
-          <div className="col-sm-2 d-flex justify-content-end align-items-center">
+          <div className="col-sm-2  d-flex justify-content-end align-items-center">
             {!isLoggedIn ? (
               <div className="login-register">
                 <button

@@ -46,36 +46,36 @@ const ProductsCategory = () => {
 
   return (
     <Layout>
-      <Container className='container-category '>
-        <Row className='mt-5'>
-          <Col>Categories go here</Col>
-          <Col className='d-flex justify-content-end'>Order by</Col>
-        </Row>
-        <Row className='row m-auto'>
-          <Col lg={3}>
+      <div className='container container-category '>
+        <div className='row m-auto'>
+
+          <div className='col-lg-3 col-md-3'>
             <Filters
               setFilters={setFilters}
               filters={filters}
               maxPrice={maxPrice}
             />
-          </Col>
-          <Col lg={9}>
+          </div>
+
+          <div className='col lg-9 col-md-9'>
             <div className='row'>
               {filteredProducts
                 ? filteredProducts.map((product) => (
-                  <div className='col-4 mb-4' key={product.id}>
+                  <div className='col-lg-4 col-md-4 mb-4' key={product.id}>
                     <ProductCard product={product} />
                   </div>
                 ))
                 : products?.map((product) => (
-                  <div className='col-4' key={product.id}>
+                  <div className='col-lg-4 col-md-4' key={product.id}>
                     <ProductCard  product={product} />
                   </div>
                 ))}
+
             </div>
-          </Col>
-        </Row>
-      </Container>
+          </div>
+
+        </div>
+      </div>
     </Layout>
   )
 }

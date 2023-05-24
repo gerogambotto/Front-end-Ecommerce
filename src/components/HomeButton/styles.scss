@@ -1,17 +1,37 @@
-@import '../../styles/variables.scss';
+@import "../../styles/variables.scss";
 
 .menu {
-  display:flex;
+  display: flex;
   align-items: center;
   justify-content: left;
   cursor: pointer;
 
-  .logo{
+  .logo {
     width: 100px;
     height: 100px;
   }
 }
-
-  
-
-
+@media only screen and (max-width: 600px) {
+  .menu {
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    cursor: pointer;
+    .logo {
+      width: 100px;
+      height: 100px;
+    }
+  }
+}
+@media only screen and (max-width: 320px) {
+  .menu {
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    cursor: pointer;
+    .logo {
+      width: 100px;
+      height: 100px;
+    }
+  }
+}
