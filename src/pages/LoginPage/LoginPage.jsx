@@ -4,7 +4,7 @@ import "./styles.scss"
 import { authGlobalState } from "../../context/authcontext/AuthContext.jsx"
 
 export function LoginPage() {
-  const regex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/
+  const regex = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/
 
   const { login } = authGlobalState()
   const [password, setPassword] = useState("")
