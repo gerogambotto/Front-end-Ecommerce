@@ -4,21 +4,33 @@
 
 @media (max-width: 991px) {
   .navbar-mobile {
+    padding: 2rem;
     position: absolute;
     z-index: 5;
     width: 100%;
-    top: 0;
+    top: 163px;
     left: 0;
-    background-color: $color3;
-    padding: 1rem;
+    background-color: white;
+  }
+  .navbar-bottom {
+    display: none !important ;
+  }
+
+  .login-register {
+    display: none !important;
+  }
+
+  .burger-menu {
+    margin-right: 7px;
   }
 }
+
 .navbar-section {
   background-color: white;
   .cart-button {
     cursor: pointer;
-    width: 30px;
-    height: 40px;
+    width: 55px;
+    height: 45px;
     background-color: transparent;
     .cart-icon {
       border: none;
@@ -26,8 +38,13 @@
     }
   }
   .navbar-top {
-    padding-top: 2rem;
+    padding-bottom: 1rem;
 
+    @media (min-width: 992px) {
+      .burger-menu {
+        display: none;
+      }
+    }
     .login-register {
       display: flex;
       align-items: center;
@@ -55,6 +72,4 @@
       }
     }
   }
-}
-@media only screen and (max-width: 600px) {
 }
