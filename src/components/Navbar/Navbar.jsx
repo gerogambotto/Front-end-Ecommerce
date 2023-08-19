@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "./styles.scss";
 import InputSearch from "../Search/imputSearch.jsx";
 import HomeButton from "../HomeButton/HomeButton.jsx";
@@ -8,6 +8,7 @@ import Categories from "../Categories/Categories.jsx";
 import { authGlobalState } from "../../context/authcontext/AuthContext";
 import cart from "../../../public/assets/cart.svg";
 export const Navbar = () => {
+  const [menuOpen, setMenuOpen] = useState(false);
   const { isLoggedIn, logout } = authGlobalState();
   const { showCart, setShowCart } = authGlobalState(false);
 
@@ -20,6 +21,7 @@ export const Navbar = () => {
           <div className="col-sm-2 d-flex justify-content-between align-items-center">
             <HomeButton />
             <svg
+            onClick={() => setMenuOpen(!menuOpen)}
               className="burger-menu"
               width="44"
               height="38"
@@ -79,7 +81,7 @@ export const Navbar = () => {
         </div>
       </div>
       <div className="container-fluid">
-        <div className="navbar-bottom d-flex justify-content-center align-items-center categories-principales">
+       {/*  <div className="navbar-bottom d-flex justify-content-center align-items-center">
           {categoriesClassification.map((e, key) => (
             <Categories
               category={e}
@@ -91,7 +93,21 @@ export const Navbar = () => {
               }
             />
           ))}
-        </div>
+        </div> */}
+        {menuOpen && (<div className="navbar-mobile">
+        {categoriesClassification.map((e, key) => (
+            <Categories
+              category={e}
+              key={key}
+              border={
+                key === categoriesClassification.length - 1
+                  ? ""
+                  : "custom-border"
+              }
+            />
+          ))}
+        </div>)}
+        
       </div>
     </section>
   );
