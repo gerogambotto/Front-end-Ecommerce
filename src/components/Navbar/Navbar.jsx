@@ -7,6 +7,7 @@ import categoriesClassification from "../../../categoriesClassification.json";
 import Categories from "../Categories/Categories.jsx";
 import { authGlobalState } from "../../context/authcontext/AuthContext";
 import cart from "../../../public/assets/cart.svg";
+import close from "../../../public/assets/close.svg";
 export const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const { isLoggedIn, logout } = authGlobalState();
@@ -20,24 +21,32 @@ export const Navbar = () => {
         <div className="navbar-top row justify-content-between">
           <div className="col-sm-2 d-flex justify-content-between align-items-center">
             <HomeButton />
-            <svg
-            onClick={() => setMenuOpen(!menuOpen)}
-              className="burger-menu"
-              width="44"
-              height="38"
-              viewBox="0 0 24 18"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <g clip-path="url(#clip0_5_26)">
-                <path d="M0 9H24M0 1H24M0 17H24" stroke="#e86412" />
-              </g>
-              <defs>
-                <clipPath id="clip0_5_26">
-                  <rect width="34" height="28" fill="white" />
-                </clipPath>
-              </defs>
-            </svg>
+            {menuOpen ? (
+              <img
+                src={close}
+                className="burger-menu close"
+                onClick={() => setMenuOpen(false)}
+              ></img>
+            ) : (
+              <svg
+                onClick={() => setMenuOpen(!menuOpen)}
+                className="burger-menu"
+                width="44"
+                height="38"
+                viewBox="0 0 24 18"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <g clip-path="url(#clip0_5_26)">
+                  <path d="M0 9H24M0 1H24M0 17H24" stroke="#e86412" />
+                </g>
+                <defs>
+                  <clipPath id="clip0_5_26">
+                    <rect width="34" height="28" fill="white" />
+                  </clipPath>
+                </defs>
+              </svg>
+            )}
           </div>
           <div className="col-sm-8 d-flex justify-content-center align-items-center">
             <InputSearch />
@@ -81,7 +90,7 @@ export const Navbar = () => {
         </div>
       </div>
       <div className="container-fluid">
-       {/*  <div className="navbar-bottom d-flex justify-content-center align-items-center">
+        {/*  <div className="navbar-bottom d-flex justify-content-center align-items-center">
           {categoriesClassification.map((e, key) => (
             <Categories
               category={e}
@@ -94,20 +103,21 @@ export const Navbar = () => {
             />
           ))}
         </div> */}
-        {menuOpen && (<div className="navbar-mobile">
-        {categoriesClassification.map((e, key) => (
-            <Categories
-              category={e}
-              key={key}
-              border={
-                key === categoriesClassification.length - 1
-                  ? ""
-                  : "custom-border"
-              }
-            />
-          ))}
-        </div>)}
-        
+        {menuOpen && (
+          <div className="navbar-mobile">
+            {categoriesClassification.map((e, key) => (
+              <Categories
+                category={e}
+                key={key}
+                border={
+                  key === categoriesClassification.length - 1
+                    ? ""
+                    : "custom-border"
+                }
+              />
+            ))}
+          </div>
+        )}
       </div>
     </section>
   );
