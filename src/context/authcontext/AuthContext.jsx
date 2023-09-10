@@ -1,7 +1,6 @@
 import axios from "axios"
-import { useEffect, useState } from "react"
-import { useContext } from "react"
-import { createContext } from "react"
+import { useEffect, useState, useContext, createContext } from "react"
+
 import { useNavigate } from 'react-router-dom'
 
 export const authContext = createContext()
@@ -19,16 +18,15 @@ export const AuthProvider = ({ children }) => {
   const [showCart, setShowCart] = useState(false)
 
   const login = async (email, password) => {
-    console.log(email,password)
-    const body = {
-      "username": email,
-      "password": password, 
-    }
-    const res = await axios.post(`${VITE_APP_BACKEND_API}/token`, body)
-    console.log(res)
+    const params = new URLSearchParams();
+    params.append('username', email);
+    params.append('password', password);
+
+    const res = await axios.post(`${VITE_APP_BACKEND_API}/token`, params)
     if (res.status === 200) {
-      localStorage.setItem("token", res.data.token)
+      localStorage.setItem("token", res.data.access_token)
       setIsLoggedIn(true)
+      navigate('/')
     } else {
       setIsLoggedIn(false)
     }

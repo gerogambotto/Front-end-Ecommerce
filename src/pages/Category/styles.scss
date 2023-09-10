@@ -1,21 +1,38 @@
 .container-category {
   min-height: 100vh;
   margin-bottom: 1rem;
-
-  .filters{
+  margin-top: 40px;
+.filter-input{
+  text-align: center;
+  justify-content: center;
+}
+  .filters {
     display: flex;
     align-items: center;
     justify-content: space-between;
     font-size: 14px;
     font-weight: 700;
-
-    .filter{
-      .filter-container{
+      .filter-container {
         display: flex;
-        gap:1rem;
+        gap: 1rem;
       }
-      input{
+      input {
         cursor: pointer;
+       
+      }
+      .filter-label{
+        text-align: center;
+        justify-content: center;
+      }
+     
+    
+  }
+}
+@media only screen and (max-width: 600px) {
+  .filtered-products-category {
+    .filtered-products-column {
+      .filtered-products {
+       
       }
     }
   }
