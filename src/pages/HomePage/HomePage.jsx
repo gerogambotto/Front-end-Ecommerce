@@ -4,6 +4,7 @@ import { CarouselProducts } from "../../components/CarouselProducts/CarouselProd
 import "./styles.scss";
 import categoriesClassification from "../../../categoriesClassification.json";
 import HomeGallery from "../../components/HomeGallery/HomeGallery.jsx";
+import Carousel2 from "../../components/Carousel2/Carousel2.jsx";
 
 export function HomePage() {
   const [products, setProducts] = useState(null);
@@ -12,7 +13,6 @@ export function HomePage() {
     const products = await fetch(`https://dummyjson.com/products?limit=100`);
     const data = await products.json();
     setProducts(data);
-    
   };
 
   useEffect(() => {
@@ -31,6 +31,16 @@ export function HomePage() {
     <Layout>
       <section className="home-section mt-5">
         {categoriesClassification.map((e) => (
+          <Carousel2
+            categories={Object.keys(e)}
+            data={filterByCategories(Object.values(e)[0])}
+            key={Object.keys(e)}
+          />
+        ))}
+      </section>
+
+      <section className="home-section mt-5">
+        {categoriesClassification.map((e) => (
           <CarouselProducts
             categories={Object.keys(e)}
             data={filterByCategories(Object.values(e)[0])}
@@ -39,8 +49,6 @@ export function HomePage() {
         ))}
         <HomeGallery />
       </section>
-
-      
     </Layout>
   );
 }
