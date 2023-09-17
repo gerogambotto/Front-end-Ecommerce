@@ -1,15 +1,14 @@
-import "./App.scss"
-import { Route, Routes } from "react-router-dom"
-import { RegisterPage } from "./pages/RegisterPage/RegisterPage.jsx"
-import ProductsPage from "./pages/ProductsPage/ProductsPage.jsx"
-import { LoginPage } from "./pages/LoginPage/LoginPage.jsx"
-import { HomePage } from "./pages/HomePage/HomePage.jsx"
-import { ProductDetail } from "./pages/Product/ProductDetail.jsx"
-import ProductsCategory from "./pages/Category/ProductCategory"
-import { AuthProvider } from "./context/authcontext/AuthContext"
-import CartContextProvider from "./context/cartContext/CartContext"
-import Cart  from "./pages/Cart/Cart"
-
+import "./App.scss";
+import { Route, Routes } from "react-router-dom";
+import { RegisterPage } from "./pages/RegisterPage/RegisterPage.jsx";
+import ProductsPage from "./pages/ProductsPage/ProductsPage.jsx";
+import { LoginPage } from "./pages/LoginPage/LoginPage.jsx";
+import { HomePage } from "./pages/HomePage/HomePage.jsx";
+import { ProductDetail } from "./pages/Product/ProductDetail.jsx";
+import ProductsCategory from "./pages/Category/ProductCategory";
+import { AuthProvider } from "./context/authcontext/AuthContext";
+import CartContextProvider from "./context/cartContext/CartContext";
+import Cart from "./pages/Cart/Cart";
 
 function App() {
   return (
@@ -25,11 +24,11 @@ function App() {
             path="/products/category/:category"
             element={<ProductsCategory />}
           />
-          <Route path="/cart" element={<Cart/>} />
+          <Route path="/cart" element={<Cart />} />
         </Routes>
       </CartContextProvider>
     </AuthProvider>
-  )
+  );
 }
 
-export default App
+export default App;
