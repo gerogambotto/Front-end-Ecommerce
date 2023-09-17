@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { Layout } from "../../components/Layout/Layout.jsx";
-import { CarouselProducts } from "../../components/CarouselProducts/CarouselProducts.jsx";
 import "./styles.scss";
 import categoriesClassification from "../../../categoriesClassification.json";
 import HomeGallery from "../../components/HomeGallery/HomeGallery.jsx";
@@ -32,16 +31,6 @@ export function HomePage() {
       <section className="home-section mt-5">
         {categoriesClassification.map((e) => (
           <Carousel2
-            categories={Object.keys(e)}
-            data={filterByCategories(Object.values(e)[0])}
-            key={Object.keys(e)}
-          />
-        ))}
-      </section>
-
-      <section className="home-section mt-5">
-        {categoriesClassification.map((e) => (
-          <CarouselProducts
             categories={Object.keys(e)}
             data={filterByCategories(Object.values(e)[0])}
             key={Object.keys(e)}
