@@ -18,7 +18,7 @@
     }  
     .text-img-conteiner:hover{
         cursor: pointer;
-        width: 150px;
+        width: 99px;
         opacity: 1;
         filter: contrast(120%)
     }
@@ -35,6 +35,13 @@
     .text-img-conteiner:hover .text-image-hover{
        visibility: visible;
     }
-  
+
+   
 
 }
+
+@media (max-width: 999px) {
+    .home-gallery{
+        visibility: hidden;
+    }
+  }
