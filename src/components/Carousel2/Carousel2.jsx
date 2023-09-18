@@ -20,7 +20,6 @@ export default function Carousel2({ data, categories }) {
     slideToShowDinamic = 1;
   }
 
-  console.log(windowWidth);
   const settings = {
     dots: false,
     infinite: true,
