@@ -6,42 +6,14 @@ import axios from "axios";
 import { Col, Container, Row } from "react-bootstrap";
 import Filters from "./Filters";
 import { ProductCard } from "../../components/ProductCard/ProductCard.jsx";
+
 const ProductsCategory = () => {
   const { category } = useParams();
+
   const [products, setProducts] = useState();
   const [filteredProducts, setFilteredProducts] = useState(null);
   const [maxPrice, setMaxPrice] = useState("0");
   const [filters, setFilters] = useState({ maxPrice: 0 });
-
-  const getProducts = async () => {
-    let categoryUrls = {
-      electronics: ["smartphones", "laptops", "tablets"],
-      fashion: [
-        "womens-dresses",
-        "mens-shirts",
-        "mens-shoes",
-        "mens-watches",
-        "womens-watches",
-        "womens-bags",
-      ],
-      vehicles: ["automotive", "motorcycle"],
-      house: ["home-decoration", "furniture", "lighting"],
-      beauty: ["fragrances", "skincare"],
-    };
-
-    if (category in categoryUrls) {
-      const categoryRequests = categoryUrls[category].map((subCategory) =>
-        axios.get(`https://dummyjson.com/products/category/${subCategory}`)
-      );
-
-      const responses = await Promise.all(categoryRequests);
-
-      const categoryProducts = responses.flatMap((res) => res.data.products);
-
-      setProducts(categoryProducts);
-      getMaxPrice(categoryProducts);
-    }
-  };
 
   const getFilterProducts = (products) => {
     const res = products?.filter(
@@ -56,12 +28,56 @@ const ProductsCategory = () => {
   };
 
   useEffect(() => {
-    getFilterProducts(products);
-  }, [filters]);
+    let subcategoryUrls = [];
+
+    switch (category) {
+      case "electronics":
+        subcategoryUrls = ["smartphones", "laptops", "tablets"];
+        break;
+      case "fashion":
+        subcategoryUrls = [
+          "womens-dresses",
+          "mens-shirts",
+          "mens-shoes",
+          "mens-watches",
+          "womens-watches",
+          "womens-bags",
+        ];
+        break;
+      case "vehicles":
+        subcategoryUrls = ["automotive", "motorcycle"];
+        break;
+      case "house":
+        subcategoryUrls = ["home-decoration", "furniture", "lighting"];
+        break;
+      case "beauty":
+        subcategoryUrls = ["fragrances", "skincare"];
+        break;
+      default:
+        subcategoryUrls = [category];
+        break;
+    }
+
+    Promise.all(
+      subcategoryUrls.map((subcategory) =>
+        axios.get(`https://dummyjson.com/products/category/${subcategory}`)
+      )
+    )
+      .then((responses) => {
+        const allProducts = responses.flatMap(
+          (response) => response.data.products
+        );
+        setProducts(allProducts);
+        getMaxPrice(allProducts);
+      })
+      .catch((error) => {
+        console.error("Error fetching data:", error);
+      });
+  }, [category]);
 
   useEffect(() => {
-    getProducts();
-  }, [category]);
+    getFilterProducts(products);
+  }, [filters]);
 
   useEffect(() => {
     setFilters({ maxPrice: maxPrice });
