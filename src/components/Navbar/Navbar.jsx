@@ -37,7 +37,7 @@ export const Navbar = () => {
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
               >
-                <g clip-path="url(#clip0_5_26)">
+                <g clipPath="url(#clip0_5_26)">
                   <path d="M0 9H24M0 1H24M0 17H24" stroke="#e86412" />
                 </g>
                 <defs>

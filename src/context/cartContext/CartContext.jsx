@@ -4,10 +4,11 @@ import { useState } from "react";
 import jwt_decode from "jwt-decode";
 
 export const CartContext = createContext();
+
 export const CartGlobalState = () => {
   const context = useContext(CartContext);
   if (!context)
-    throw new Error("CartContext must be used within an CartProvider");
+    throw new Error("CartContext must be used within a CartProvider");
   return context;
 };
 
@@ -26,12 +27,16 @@ export const CartContextProvider = ({ children }) => {
         },
       ],
     };
-    const res = await axios.post("https://dummyjson.com/carts/add", body);
+    try {
+      const res = await axios.post("https://dummyjson.com/carts/add", body);
 
-    if (res.status === 200) {
-      addToLocalStorage(productId, quantity);
-    } else {
-      console.log("error");
+      if (res.status === 200) {
+        addToLocalStorage(productId, quantity);
+      } else {
+        console.log("error");
+      }
+    } catch (error) {
+      console.error("Error adding to cart:", error);
     }
   };
 
@@ -55,27 +60,22 @@ export const CartContextProvider = ({ children }) => {
     }
   };
 
-  const getCartFromUser = () => {
-    const res = axios.get(`https://dummyjson.com/carts/user/6`);
-    console.log(res.data);
-  };
-  /*  const removeFromCart = (product) => {
-    setCartList(cartList.filter((item) => item.id !== product.id))
-  } */
-
   const cartProducts = JSON.parse(localStorage.getItem("cart"));
   const [cartData, setCartData] = useState([]);
+
   const getCartProducts = async () => {
     try {
-      const promises = cartProducts.map(async (item) => {
-        const res = await axios.get(
-          `https://dummyjson.com/products/${item.productId}`
-        );
-        return res.data;
-      });
+      if (cartProducts) {
+        const promises = cartProducts.map(async (item) => {
+          const res = await axios.get(
+            `https://dummyjson.com/products/${item.productId}`
+          );
+          return res.data;
+        });
 
-      const cartAwaited = await Promise.all(promises);
-      setCartData(cartAwaited);
+        const cartAwaited = await Promise.all(promises);
+        setCartData(cartAwaited);
+      }
     } catch (error) {
       console.log(error);
     }

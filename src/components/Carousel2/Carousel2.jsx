@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import Slider from "react-slick";
-import Categories from "../Categories/Categories";
 import { ProductCard } from "../ProductCard/ProductCard";
 import "./styles.scss";
+import { Link } from "react-router-dom";
 
 export default function Carousel2({ data, categories }) {
   const windowWidth = window.innerWidth;
@@ -30,7 +30,9 @@ export default function Carousel2({ data, categories }) {
 
   return (
     <div>
-      <h2>{categories}</h2>
+      <h2 className="d-flex align-items-end categories-title">
+        <Link to={`products/category/${categories}`}>{categories}</Link>
+      </h2>
       <Slider {...settings}>
         {data.map((product) => {
           return <ProductCard key={product.id} product={product} />;
