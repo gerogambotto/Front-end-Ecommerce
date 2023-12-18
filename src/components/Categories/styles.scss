@@ -57,7 +57,6 @@
     position: absolute;
     left: 0;
     width: 100%;
-    top: 12.7rem;
     background-color: $secondaryColor;
     
     height: 80px;
@@ -76,7 +75,7 @@
       color: black;
       font-weight: 700;
       line-height: 30px;
-      
+      border-right: 2px solid $primaryColor;
       .sub-categories-title {
         cursor: pointer;
       }
