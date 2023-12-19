@@ -90,19 +90,21 @@ export const Navbar = () => {
         </div>
       </div>
       <div className="container-fluid">
-        {/*  <div className="navbar-bottom d-flex justify-content-center align-items-center">
-          {categoriesClassification.map((e, key) => (
-            <Categories
-              category={e}
-              key={key}
-              border={
-                key === categoriesClassification.length - 1
-                  ? ""
-                  : "custom-border"
-              }
-            />
-          ))}
-        </div> */}
+        {
+          <div className="navbar-bottom d-flex justify-content-center align-items-center">
+            {categoriesClassification.map((e, key) => (
+              <Categories
+                category={e}
+                key={key}
+                border={
+                  key === categoriesClassification.length - 1
+                    ? ""
+                    : "custom-border"
+                }
+              />
+            ))}
+          </div>
+        }
         {menuOpen && (
           <div className="navbar-mobile">
             {categoriesClassification.map((e, key) => (

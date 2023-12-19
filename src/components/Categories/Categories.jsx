@@ -1,5 +1,6 @@
 import "./styles.scss";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 function Categories({ category, border }) {
   const [showSubCategories, setShowSubCategories] = useState(false);
@@ -17,7 +18,11 @@ function Categories({ category, border }) {
             setShowSubCategories(false);
           }}
         >
-          <h3 className={border}>{Object.keys(category)}</h3>
+          <h3 className={border}>
+            <Link to={`/products/category/${Object.keys(category)}`}>
+              {Object.keys(category)}
+            </Link>
+          </h3>
         </div>
         <div
           onMouseEnter={() => {
