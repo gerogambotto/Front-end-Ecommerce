@@ -3,7 +3,6 @@ import categoriesClassification from "../../../categoriesClassification.json";
 import "./styles.scss";
 import { Link } from "react-router-dom";
 export const Footer = () => {
-  /* /products/search?q=samsung */
   return (
     <footer>
       <Container className="footer-container pt-5 ">
