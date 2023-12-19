@@ -103,7 +103,10 @@ const ProductsCategory = () => {
                     </div>
                   ))
                 : products?.map((product) => (
-                    <div className="col-lg-4 col-md-4" key={product.id}>
+                    <div
+                      className="tabletwidth col-lg-4 col-md-4"
+                      key={product.id}
+                    >
                       <ProductCard product={product} />
                     </div>
                   ))}

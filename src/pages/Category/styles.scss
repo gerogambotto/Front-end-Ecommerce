@@ -27,13 +27,17 @@
      
     
   }
-}
-@media only screen and (max-width: 600px) {
-  .filtered-products-category {
-    .filtered-products-column {
-      .filtered-products {
-       
+  .row{ 
+     @media (max-width: 1025px) {
+      
+      flex-direction: column;
+      align-items: center;
+      .col-md-4 {
+        max-width: none;  
+        width: 100%;     
       }
     }
-  }
+
+}
+
 }
