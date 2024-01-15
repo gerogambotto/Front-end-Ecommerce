@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { Layout } from "../../components/Layout/Layout.jsx";
 import { useParams } from "react-router";
 import { Col, Container, Row } from "react-bootstrap";
@@ -6,7 +6,10 @@ import { Link } from "react-router-dom";
 import visa from "./visa.svg";
 import mastercard from "./mastercard.svg";
 import { useNavigate } from "react-router-dom";
-import { CartGlobalState } from "../../context/cartContext/CartContext";
+import {
+  CartContext,
+  CartGlobalState,
+} from "../../context/cartContext/CartContext";
 import { authGlobalState } from "../../context/authcontext/AuthContext";
 import add from "./add.svg";
 import minus from "./dash.svg";
@@ -19,13 +22,13 @@ function ProductDetail() {
   const [isLoading, setIsLoading] = useState(true);
   const [cartModal, setCartModal] = useState(false);
   const { showCart, setShowCart } = authGlobalState(false);
-  const { addToCart, cartList, addToLocalStorage } = CartGlobalState();
+  const { addToCart, cartList } = CartGlobalState();
   const navigate = useNavigate();
 
   const onAddToCart = (productId, count) => {
     addToCart(productId, count);
 
-    Swal.fire("Product Added!", "Go and check your cart!", "success");
+    Swal.fire("Producto Agregado", "Ve y verifica tu carrito", "success");
   };
 
   const ToggleModal = () => {
@@ -39,7 +42,7 @@ function ProductDetail() {
       const data = await products.json();
       setProduct(data);
     } catch (error) {
-      console.error("Error fetching product:", error);
+      console.error("Error al obtener el producto:", error);
     } finally {
       setIsLoading(false);
     }
@@ -59,6 +62,19 @@ function ProductDetail() {
     if (count > 1) {
       setCount(count - 1);
     }
+  };
+
+  const { removeFromCart } = useContext(CartContext);
+
+  const onBuyButtonClick = () => {
+    const purchasedProduct = {
+      id: product?.id,
+      quantity: count,
+    };
+
+    removeFromCart(purchasedProduct.id);
+
+    Swal.fire("Producto Comprado", "¡Gracias por tu compra!", "success");
   };
 
   return (
@@ -100,15 +116,15 @@ function ProductDetail() {
               <p className="mediosDePago"> Ver todos los medios de pago</p>
               <div className="tiempoEnvio"></div>
               <div className="d-flex flex-column justify-content-center align-items-center ">
-                <button className="buyButton">
-                  <div style={{ color: "white" }}>Buy</div>
+                <button className="buyButton" onClick={onBuyButtonClick}>
+                  <div style={{ color: "white" }}>Comprar</div>
                 </button>
                 <button className="cartButton mt-3">
                   <div
                     className="carttext"
                     onClick={() => onAddToCart(product?.id, count)}
                   >
-                    Add to cart
+                    Agregar al carrito
                   </div>
                 </button>
               </div>
@@ -126,4 +142,5 @@ function ProductDetail() {
     </Layout>
   );
 }
+
 export default ProductDetail;
