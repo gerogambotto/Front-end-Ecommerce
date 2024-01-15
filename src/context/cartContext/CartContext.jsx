@@ -66,17 +66,14 @@ export const CartContextProvider = ({ children }) => {
   };
 
   const removeFromCart = (productId) => {
-    // Busca el índice del producto en el carrito
     const productIndex = cartList.findIndex(
       (item) => item.productId === productId
     );
 
     if (productIndex !== -1) {
-      // Si el producto está en el carrito, cópialo y elimínalo del array
       const updatedCart = [...cartList];
       updatedCart.splice(productIndex, 1);
 
-      // Actualiza el estado del carrito y el almacenamiento local
       setCartList(updatedCart);
       updateLocalStorage(updatedCart);
     }
