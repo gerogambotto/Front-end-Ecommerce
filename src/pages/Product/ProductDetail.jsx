@@ -1,64 +1,65 @@
-import "./styles.scss"
-import React, { useEffect, useState } from "react"
-import { Layout } from "../../components/Layout/Layout.jsx"
-import { useParams } from "react-router"
-import { Col, Container, Row } from "react-bootstrap"
-import { Link } from "react-router-dom"
-import visa from "./visa.svg"
-import mastercard from "./mastercard.svg"
-import { useNavigate } from "react-router-dom"
-import { CartGlobalState } from "../../context/cartContext/CartContext"
-import { authGlobalState } from "../../context/authcontext/AuthContext"
-import add from "./add.svg"
-import minus from "./dash.svg"
-import Swal from 'sweetalert2'
+import React, { useEffect, useState } from "react";
+import { Layout } from "../../components/Layout/Layout.jsx";
+import { useParams } from "react-router";
+import { Col, Container, Row } from "react-bootstrap";
+import { Link } from "react-router-dom";
+import visa from "./visa.svg";
+import mastercard from "./mastercard.svg";
+import { useNavigate } from "react-router-dom";
+import { CartGlobalState } from "../../context/cartContext/CartContext";
+import { authGlobalState } from "../../context/authcontext/AuthContext";
+import add from "./add.svg";
+import minus from "./dash.svg";
+import Swal from "sweetalert2";
+import "./styles.scss";
 
-export function ProductDetail() {
-  const { id } = useParams()
-  const [product, setProduct] = useState(null)
-  const [isLoading, setIsLoading] = useState(true)
-  const [cartModal, setCartModal] = useState(false)
-  const { showCart, setShowCart } = authGlobalState(false)
-  const { addToCart, cartList, addToLocalStorage } = CartGlobalState()
-  const navigate = useNavigate()
+function ProductDetail() {
+  const { id } = useParams();
+  const [product, setProduct] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
+  const [cartModal, setCartModal] = useState(false);
+  const { showCart, setShowCart } = authGlobalState(false);
+  const { addToCart, cartList, addToLocalStorage } = CartGlobalState();
+  const navigate = useNavigate();
 
   const onAddToCart = (productId, count) => {
-    addToCart(productId, count)
-    
-    Swal.fire(
-      'Product Added!',
-      'Go and check your cart!',
-      'success'
-    )
-  }
+    addToCart(productId, count);
+
+    Swal.fire("Product Added!", "Go and check your cart!", "success");
+  };
 
   const ToggleModal = () => {
-    setCartModal(!cartModal)
-  }
+    setCartModal(!cartModal);
+  };
 
   const getProduct = async () => {
-    setIsLoading(true)
-    const products = await fetch(`https://dummyjson.com/products/${id}`)
-    const data = await products.json()
-    setProduct(data)
-    setIsLoading(false)
-  }
+    setIsLoading(true);
+    try {
+      const products = await fetch(`https://dummyjson.com/products/${id}`);
+      const data = await products.json();
+      setProduct(data);
+    } catch (error) {
+      console.error("Error fetching product:", error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
   useEffect(() => {
-    getProduct()
-  }, [])
+    getProduct();
+  }, []);
 
-  const [count, setCount] = useState(1)
+  const [count, setCount] = useState(1);
   const increment = () => {
     if (count < product?.stock) {
-      setCount(count + 1)
+      setCount(count + 1);
     }
-  }
+  };
   const decrement = () => {
     if (count > 1) {
-      setCount(count - 1)
+      setCount(count - 1);
     }
-  }
+  };
 
   return (
     <Layout>
@@ -123,5 +124,6 @@ export function ProductDetail() {
         )}
       </Container>
     </Layout>
-  )
+  );
 }
+export default ProductDetail;
