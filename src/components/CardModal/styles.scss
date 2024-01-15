@@ -35,6 +35,21 @@
     color: $primaryColor;
     font-weight: 500;
   }
+    .trash-icon-container{
+
+      min-width: 15%;
+      width: 20%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      
+      .trash-icon-button{
+        width: 50%;
+        height: 50%;
+       
+      }
+    }
+ 
 
   p {
     margin: 0;
