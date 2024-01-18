@@ -28,7 +28,7 @@ function ProductDetail() {
   const onAddToCart = (productId, count) => {
     addToCart(productId, count);
 
-    Swal.fire("Producto Agregado", "Ve y verifica tu carrito", "success");
+    Swal.fire("Product Added", "Go and check your cart", "success");
   };
 
   const ToggleModal = () => {
@@ -53,16 +53,6 @@ function ProductDetail() {
   }, []);
 
   const [count, setCount] = useState(1);
-  const increment = () => {
-    if (count < product?.stock) {
-      setCount(count + 1);
-    }
-  };
-  const decrement = () => {
-    if (count > 1) {
-      setCount(count - 1);
-    }
-  };
 
   const { removeFromCart } = useContext(CartContext);
 
@@ -74,7 +64,7 @@ function ProductDetail() {
 
     removeFromCart(purchasedProduct.id);
 
-    Swal.fire("Producto Comprado", "¡Gracias por tu compra!", "success");
+    Swal.fire("Purchase completed!", "Go and check your email!", "success");
   };
 
   return (
@@ -94,46 +84,38 @@ function ProductDetail() {
               <div className="productBrand mt-5 mb-3">{product?.brand}</div>
               <div className="productName ">{product?.title}</div>
               <div className="subtitle mt-3">
-                Vendido por <strong>{product?.brand}</strong>
+                Seller: <strong>{product?.brand}</strong>
               </div>
               <div className="price mt-4 mb-3"> $ {product?.price}</div>
-              <div className="d-flex mt-3">
-                <button className="border-0 mr-3 minusadd " onClick={decrement}>
-                  <img src={minus} alt="minus" />
-                </button>
-                <div>{count && count}</div>
-                <button onClick={increment} className="border-0 ml-3 minusadd">
-                  <img src={add} alt="add" />
-                </button>
-              </div>
-              <div className="cuotas mt-2">
-                Hasta 6 cuotas sin interés de ${Math.round(product?.price / 6)}
-              </div>
+
               <div className="cards-container">
                 <img className="cards mr-4" src={visa} alt="visa" />
                 <img className="cards" src={mastercard} alt="mastercard" />
               </div>
-              <p className="mediosDePago"> Ver todos los medios de pago</p>
+              <p className="mediosDePago">
+                {" "}
+                You will receive an email with the purchase information
+              </p>
               <div className="tiempoEnvio"></div>
               <div className="d-flex flex-column justify-content-center align-items-center ">
                 <button className="buyButton" onClick={onBuyButtonClick}>
-                  <div style={{ color: "white" }}>Comprar</div>
+                  <div style={{ color: "white" }}>Buy</div>
                 </button>
                 <button className="cartButton mt-3">
                   <div
                     className="carttext"
                     onClick={() => onAddToCart(product?.id, count)}
                   >
-                    Agregar al carrito
+                    Add to cart
                   </div>
                 </button>
               </div>
             </Col>
 
             <Col sm={12} style={{ marginTop: "30px" }}>
-              <h3> Especificaciones técnicas</h3>
+              <h3> Technical specifications</h3>
               <div className="h_line"></div>
-              <h5>Descripcion del producto</h5>
+              <h5>Product description</h5>
               <p>{product?.description}</p>
             </Col>
           </Row>
