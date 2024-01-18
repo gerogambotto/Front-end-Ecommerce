@@ -65,10 +65,6 @@ const ProductsPage = () => {
   return (
     <Layout>
       <Container className="container-category ">
-        <Row className="mt-5">
-          <Col>Categories go here</Col>
-          <Col className="d-flex justify-content-end">Order by</Col>
-        </Row>
         <Row className="row m-auto">
           <Col lg={3}>
             <Filters
