@@ -1,13 +1,17 @@
 @import "../../styles/variables.scss";
 
+
 .categories-container {
- 
+  .color-letras-subcategories{
+    color:black;
+  }
+  
 
   .sub-categories {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 70px;
+    height: 40px;
     
     h3 {
       text-transform: capitalize;
@@ -57,9 +61,10 @@
     position: absolute;
     left: 0;
     width: 100%;
-    background-color: $secondaryColor;
-    
-    height: 80px;
+    background-color: $navbarBackground;
+    padding-left: 15%;
+    padding-right: 15%;
+    height: 5%;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -75,10 +80,10 @@
       color: black;
       font-weight: 700;
       line-height: 30px;
-      border-right: 2px solid $primaryColor;
       .sub-categories-title {
         cursor: pointer;
       }
+    
     }
     
   }

@@ -3,13 +3,13 @@
 .form{
     
     background-color: white;
-    width: 300px;
+    width: 40%;
     height: 44px;
     border-radius: 50px;
     display: flex;
     flex-direction: row;
     align-items: center;
-    border: 1px solid $primaryColor;
+    border: 2px solid $primaryColor;
 
 
     input {
