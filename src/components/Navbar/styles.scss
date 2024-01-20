@@ -10,11 +10,13 @@
     width: 100%;
     top: 163px;
     left: 0;
-    background-color: #e86412;
+    background-color: $primaryColor;
   }
+  
   .navbar-bottom {
     display: none !important ;
   }
+
 
   .login-register {
     display: none !important;
@@ -25,20 +27,31 @@
   }
 }
 
+.background-navbar{
+  background-color: $navbarBackground;
+}
+.menu{
+  margin-right: 5%;
+}
 .navbar-section {
   background-color: white;
+ 
   .cart-button {
     cursor: pointer;
     width: 55px;
     height: 45px;
     background-color: transparent;
+    margin-right: 10%;
+  
     .cart-icon {
       border: none;
       cursor: pointer;
     }
   }
+
+ 
   .navbar-top {
-    padding-bottom: 1rem;
+    
 
     @media (min-width: 992px) {
       .burger-menu {
@@ -52,15 +65,14 @@
 
       .login-button,
       .register-button {
+        background-color: $navbarBackground;
         cursor: pointer;
         padding: 6px 16px;
         border: none;
         min-width: 100px;
       }
 
-      .register-button {
-        background-color: $primaryColor;
-      }
+      
 
       .login-button:hover {
         background-color: $primaryColor;

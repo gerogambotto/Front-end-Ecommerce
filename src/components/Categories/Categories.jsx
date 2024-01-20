@@ -19,7 +19,10 @@ function Categories({ category, border }) {
           }}
         >
           <h3 className={border}>
-            <Link to={`/products/category/${Object.keys(category)}`}>
+            <Link
+              className="color-letras-subcategories"
+              to={`/products/category/${Object.keys(category)}`}
+            >
               {Object.keys(category)}
             </Link>
           </h3>

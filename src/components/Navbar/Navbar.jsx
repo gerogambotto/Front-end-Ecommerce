@@ -18,8 +18,9 @@ export const Navbar = () => {
   return (
     <section className="navbar-section">
       <div className="container-fluid">
-        <div className="navbar-top row justify-content-between">
-          <div className="col-sm-2 d-flex justify-content-between align-items-center">
+        <div className="navbar-top row background-navbar justify-content-between">
+          <div className="col-sm-2 d-flex justify-content-between align-items-center"></div>
+          <div className="col-sm-8 d-flex justify-content-center align-items-center">
             <HomeButton />
             {menuOpen ? (
               <img
@@ -47,8 +48,6 @@ export const Navbar = () => {
                 </defs>
               </svg>
             )}
-          </div>
-          <div className="col-sm-8 d-flex justify-content-center align-items-center">
             <InputSearch />
             <button
               className="ml-3 cart-button border-0"
@@ -56,8 +55,6 @@ export const Navbar = () => {
             >
               <img src={cart} className="cart-icon" alt="cart" />
             </button>
-          </div>
-          <div className="col-sm-2  d-flex justify-content-end align-items-center">
             {!isLoggedIn ? (
               <div className="login-register">
                 <button
@@ -87,9 +84,11 @@ export const Navbar = () => {
               </div>
             )}
           </div>
+
+          <div className="col-sm-2  d-flex justify-content-end align-items-center"></div>
         </div>
       </div>
-      <div className="container-fluid">
+      <div className="container-fluid background-navbar ">
         {
           <div className="navbar-bottom d-flex justify-content-center align-items-center">
             {categoriesClassification.map((e, key) => (
