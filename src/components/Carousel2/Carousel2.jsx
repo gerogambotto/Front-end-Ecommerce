@@ -31,7 +31,12 @@ export default function Carousel2({ data, categories }) {
   return (
     <div>
       <h2 className="d-flex align-items-end categories-title">
-        <Link to={`products/category/${categories}`}>{categories}</Link>
+        <Link
+          className="text-dark textcategories-margin"
+          to={`products/category/${categories}`}
+        >
+          {categories}
+        </Link>
       </h2>
       <Slider {...settings}>
         {data.map((product) => {

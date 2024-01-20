@@ -1,9 +1,9 @@
 [
   {
-    "electronics": ["smartphones", "laptops", "tablets"]
+    "Electronics": ["smartphones", "laptops", "tablets"]
   },
   {
-    "fashion": [
+    "Fashion": [
       "womens-dresses",
       "mens-shirts",
       "mens-shoes",
@@ -13,12 +13,12 @@
     ]
   },
   {
-    "vehicles": ["automotive", "motorcycle"]
+    "Vehicles": ["automotive", "motorcycle"]
   },
   {
-    "house": ["home-decoration", "furniture", "lighting"]
+    "House": ["home-decoration", "furniture", "lighting"]
   },
   {
-    "beauty": ["fragrances", "skincare"]
+    "Beauty": ["fragrances", "skincare"]
   }
 ]
