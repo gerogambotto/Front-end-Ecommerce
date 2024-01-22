@@ -1,5 +1,7 @@
 .cart-container {
-  min-height: 75vh;
+  min-height: 45vh;
+  margin-top: 55px;
+  margin-bottom: 50px;
   .cart-title {
     display: flex;
     justify-content: start;
@@ -29,8 +31,6 @@
     align-items: center;
     height: 150px;
 
-    .cart-summary{
-
-    }
+  
   }
 }

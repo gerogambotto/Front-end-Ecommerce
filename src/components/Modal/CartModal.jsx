@@ -77,7 +77,7 @@ const CartModal = () => {
             ))
           )}
         </Modal.Body>
-        <ModalFooter className="footer-container">
+        <ModalFooter className="modal-footer-container">
           <div className="number-container">
             <span>Total: ${total.toFixed(2)} </span>
           </div>

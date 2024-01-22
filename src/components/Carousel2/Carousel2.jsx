@@ -3,6 +3,7 @@ import Slider from "react-slick";
 import { ProductCard } from "../ProductCard/ProductCard";
 import "./styles.scss";
 import { Link } from "react-router-dom";
+import Arrowcomponent from "../arrowcomponent/Arrowcomponent";
 
 export default function Carousel2({ data, categories }) {
   const windowWidth = window.innerWidth;
@@ -26,13 +27,15 @@ export default function Carousel2({ data, categories }) {
     speed: 500,
     slidesToShow: slideToShowDinamic,
     slidesToScroll: 1,
+    nextArrow: <Arrowcomponent type="next" />,
+    prevArrow: <Arrowcomponent type="prev" />,
   };
 
   return (
     <div>
       <h2 className="d-flex align-items-end categories-title">
         <Link
-          className="text-dark textcategories-margin"
+          className="text-dark textcategories-margin text-capitalize"
           to={`products/category/${categories}`}
         >
           {categories}

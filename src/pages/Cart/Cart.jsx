@@ -6,6 +6,7 @@ import { authGlobalState } from "../../context/authcontext/AuthContext";
 import CardModal from "../../components/CardModal/CardModal";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
+import "./styles.scss";
 
 const Cart = () => {
   const { cartData, clearCart, getCartProducts } = useContext(CartContext);
