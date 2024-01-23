@@ -35,16 +35,21 @@ const CardModal = ({ cart, onQuantityChange }) => {
           <img src={trashIcon} alt="Delete" />
         </button>
       </div>
-      <a style={{ color: "#fff" }} className="" href={`/product/${cart.id}`}>
+      <a
+        style={{ color: "#fff" }}
+        className="image-cardmodal"
+        href={`/product/${cart.id}`}
+      >
         <div className="cart-img">
           <img className="cart-img" src={cart.thumbnail} alt={cart.title} />
         </div>
       </a>
-      <div className="d-flex justify-content-center align-items-center">
-        <p className="title-cart">{cart.title}</p>
-        <p className="price-cart">$ {cart.price}</p>
-        <p>Item Count: {totalQuantity}</p>
+      <div className="d-flex justify-content-center price-quantity align-items-center">
+        <a className="title-cart">{cart.title}:</a>
+        <a className="price-cart">${cart.price}</a>
+        <a className="item-count"> Item Count: {totalQuantity}</a>
       </div>
+      <div className="final-margin"></div>
     </div>
   );
 };

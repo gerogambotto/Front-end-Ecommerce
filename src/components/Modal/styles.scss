@@ -11,7 +11,10 @@
         justify-content: start;
     }
     .modal-buy-botton{
-        background: $primaryColor;
+        background: $navbarBackground;
         justify-content: center;
+    }
+    .modal-buy-botton-button{
+        background-color: $navbarBackground;
     }
 }

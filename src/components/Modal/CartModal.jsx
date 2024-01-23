@@ -92,6 +92,7 @@ const CartModal = () => {
           >
             Finish Buy
           </button>
+
           <button className="modal-buy-botton-button" onClick={handleClearCart}>
             Clear Cart
           </button>

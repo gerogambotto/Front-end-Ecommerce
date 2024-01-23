@@ -1,7 +1,6 @@
 @import "../../styles/variables.scss";
 @import "../../styles/variables";
 
-
 $dark: #373737;
 $light: #f4f4f4;
 $white: #fefefe;
@@ -12,19 +11,17 @@ $font-size--large-headline--desktop: 4.8rem;
 $font-size--large-text--mobile: 1.6rem;
 $font-size--large-text--desktop: 2rem;
 
- .minusadd{
-      width: 40px;
-    }
+.minusadd {
+  width: 40px;
+}
 .productContainer {
   min-height: 100vh;
-  .productImage{
+  .productImage {
     display: flex;
     justify-content: center;
-   
   }
-  
 }
-.cart-modal{
+.cart-modal {
   position: absolute;
   height: 150vh;
   background-color: #0c0202d7;
@@ -32,11 +29,10 @@ $font-size--large-text--desktop: 2rem;
   right: 0;
   width: 400px;
   z-index: 2;
-  .cart-modal-header{
+  .cart-modal-header {
     display: flex;
     justify-content: center;
     background-color: #e1e2e7;
-    
   }
 }
 .imagecontainer {
@@ -79,13 +75,12 @@ $font-size--large-text--desktop: 2rem;
   font-weight: 400;
   line-height: 36px;
   font-size: 1rem;
- 
 }
 .cards {
   height: 90px;
 }
-.modal-buy-botton{
-  .modal-buy-botton-button{
+.modal-buy-botton {
+  .modal-buy-botton-button {
     height: 100%;
     width: 100%;
     background-color: $primaryColor;
@@ -101,7 +96,7 @@ $font-size--large-text--desktop: 2rem;
 .productBrand {
   line-height: 28px;
   font-size: 18px;
-  color:$primaryColor;
+  color: $primaryColor;
   font-weight: 600;
 }
 .productName {
@@ -127,7 +122,7 @@ $font-size--large-text--desktop: 2rem;
   max-width: 100%;
 }
 img {
-  max-width: 100%;
+  max-width: 75%;
   height: auto;
 }
 
@@ -213,7 +208,7 @@ img {
     @extend .examples;
     background-color: $highlight2;
     h2,
-    h3 {  
+    h3 {
       color: $white;
     }
   }
