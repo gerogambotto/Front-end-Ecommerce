@@ -20,53 +20,36 @@
     object-fit: contain;
   }
 
-  .price-quantity {
-    width: 100%;
-    margin: auto;
-    .title-cart {
-      font-size: 18px;
-      font-weight: 500;
-      line-height: 20px;
-      color: #3c3c3b;
-      margin: 1rem 0;
-      text-transform: capitalize;
-    }
-
-    .price-cart {
-      max-width: 12%;
-      font-size: 18px;
-      line-height: 18px;
-      color: black;
-      font-weight: 500;
-      margin: 1rem 0.5rem 1rem 0;
-    }
-    .item-count {
-      font-size: 18px;
-      line-height: 18px;
-      color: black;
-      font-weight: 500;
-      margin: 1rem 0.5rem 1rem 0;
-    }
-  }
-  .final-margin {
-    min-width: 15%;
+  .title-cart {
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 20px;
+    color: #3c3c3b;
+    margin: 1rem 0;
+    text-transform: capitalize;
   }
 
-  .trash-icon-container {
-    min-width: 15%;
-    width: 15%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    .trash-icon-button {
-      width: 35%;
-      height: 35%;
-      border: none !important;
-      background-color: white;
-      cursor: pointer;
-    }
+  .price-cart {
+    font-size: 18px;
+    line-height: 18px;
+    color: $primaryColor;
+    font-weight: 500;
   }
+    .trash-icon-container{
+
+      min-width: 15%;
+      width: 20%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      
+      .trash-icon-button{
+        width: 50%;
+        height: 50%;
+       
+      }
+    }
+ 
 
   p {
     margin: 0;
