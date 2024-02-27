@@ -1,3 +1,5 @@
+@import "../../styles/variables.scss";
+@import "../../styles/variables";
 .cart-container {
   min-height: 45vh;
   margin-top: 55px;
@@ -10,7 +12,7 @@
   .cart-items-container {
     border: none;
     background-color: #fff;
-    border: 1px solid ;
+    border: 1px solid;
     border-radius: 15px;
     display: flex;
     justify-content: center;
@@ -19,18 +21,35 @@
   }
   .cart-item {
     display: flex;
-
   }
-  .cart-summary-container{
+  .cart-summary-container {
     border: none;
-    background-color: #fff;
-    border: 1px solid ;
-    border-radius: 15px;
     display: flex;
     justify-content: center;
     align-items: center;
     height: 150px;
-
-  
   }
+}
+
+.modal-buy-botton-button {
+  background-color: $primaryColor;
+  color: #fff;
+  align-items: center;
+  line-height: 16px;
+  width: 70%;
+  padding: 13px;
+  font-weight: 500;
+  border-radius: 40px;
+  cursor: pointer;
+}
+.modal-keep-botton-button {
+  background-color: white;
+  color: black;
+  align-items: center;
+  line-height: 16px;
+  width: 70%;
+  padding: 13px;
+  font-weight: 500;
+  border-radius: 40px;
+  cursor: pointer;
 }

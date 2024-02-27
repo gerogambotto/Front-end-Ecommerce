@@ -40,8 +40,11 @@ const Cart = () => {
             <Col sm={4}>
               <div className="cart-summary-container mt-4">
                 <div className="cart-summary">
-                  <button onClick={() => navigate("/")}>
-                    Seguir comprando
+                  <button
+                    className="modal-keep-botton-button"
+                    onClick={() => navigate("/")}
+                  >
+                    Keep buying
                   </button>
                   <button
                     className="modal-buy-botton-button"
@@ -50,7 +53,7 @@ const Cart = () => {
                       onFinishBuy();
                     }}
                   >
-                    Finalizar compra
+                    Finish purchase
                   </button>
                 </div>
               </div>
