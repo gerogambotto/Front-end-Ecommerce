@@ -1,37 +1,87 @@
-@import '../../styles/variables';
+@import "../../styles/variables";
 
-.navbar-section{
+// mobile
+
+@media (max-width: 991px) {
+  .navbar-mobile {
+    padding: 2rem;
+    position: absolute;
+    z-index: 5;
+    width: 100%;
+    top: 163px;
+    left: 0;
+    background-color: $primaryColor;
+  }
+  
+  .navbar-bottom {
+    display: none !important ;
+  }
+
+
+  .login-register {
+    display: none !important;
+  }
+
+  .burger-menu {
+    margin-right: 7px;
+  }
+}
+
+.background-navbar{
+  background-color: $navbarBackground;
+}
+.menu{
+  margin-right: 5%;
+}
+.navbar-section {
   background-color: white;
+ 
+  .cart-button {
+    cursor: pointer;
+    width: 55px;
+    height: 45px;
+    background-color: transparent;
+    margin-right: 10%;
+  
+    .cart-icon {
+      border: none;
+      cursor: pointer;
+    }
+  }
 
-  .navbar-top{
-    padding-top: 2rem;
+ 
+  .navbar-top {
+    
 
+    @media (min-width: 992px) {
+      .burger-menu {
+        display: none;
+      }
+    }
     .login-register {
-      display:flex;
+      display: flex;
       align-items: center;
       justify-content: flex-end;
 
       .login-button,
-      .register-button{
+      .register-button {
+        background-color: $navbarBackground;
         cursor: pointer;
         padding: 6px 16px;
         border: none;
         min-width: 100px;
       }
 
-      .register-button{
-        background-color: $primaryColor;
-      }
+      
 
-      .login-button:hover{
+      .login-button:hover {
         background-color: $primaryColor;
         transform: scale(1.1);
       }
-      .register-button:hover{
+      .register-button:hover {
         background-color: $primaryColor;
         transform: scale(1.1);
       }
     }
   }
 }
-

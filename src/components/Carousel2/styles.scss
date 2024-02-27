@@ -1,0 +1,21 @@
+@import '../../styles/variables.scss';
+
+.textcategories-margin{
+    margin-left: 5%;
+}
+
+.slick-slider {
+    
+    .slick-prev{
+        left: 10px;
+        z-index: 5;
+    }
+    .slick-next{
+        right: 10px;
+    }
+     
+    .categories-title{
+        color: black;
+        text-decoration: none;
+    }
+}

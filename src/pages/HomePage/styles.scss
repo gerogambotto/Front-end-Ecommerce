@@ -2,4 +2,20 @@
 
 .home-section{
     background: $backgroundColor;
+    width: 80%;
+    margin-left: 10%;
+}
+
+.modal{
+    &-dialog{
+        position: absolute;
+        right: 0;
+        height: 100%;
+        margin: 0;
+        min-width: 300px;
+
+        .modal-content{
+            height: 100vh;
+        }
+    }
 }

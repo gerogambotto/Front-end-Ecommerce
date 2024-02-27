@@ -1,6 +1,6 @@
-import Carousel from "../Carousel/carousel.jsx"
-import { ProductCard } from "../ProductCard/ProductCard"
-import "./styles.scss"
+import Carousel from "../Carousel/carousel.jsx";
+import { ProductCard } from "../ProductCard/ProductCard";
+import "./styles.scss";
 
 export const CarouselProducts = ({ categories, data }) => {
   return (
@@ -16,13 +16,13 @@ export const CarouselProducts = ({ categories, data }) => {
         </div>
 
         <div className="carousel-pre-container">
-          <Carousel show={4} infiniteloop={true}>
+          <Carousel show={4} infiniteLoop={true}>
             {data.map((product) => {
-              return <ProductCard key={product.id} product={product} />
+              return <ProductCard key={product.id} product={product} />;
             })}
           </Carousel>
         </div>
       </div>
     </section>
-  )
-}
+  );
+};

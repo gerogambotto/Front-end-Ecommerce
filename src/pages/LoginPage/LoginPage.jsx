@@ -4,7 +4,7 @@ import "./styles.scss"
 import { authGlobalState } from "../../context/authcontext/AuthContext.jsx"
 
 export function LoginPage() {
-  const regex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/
+  const regex = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/
 
   const { login } = authGlobalState()
   const [password, setPassword] = useState("")
@@ -16,12 +16,9 @@ export function LoginPage() {
 
   const [validEmail, setValidEmail] = useState(false)
 
-  function isEmail(emailAdress) {
-    if (emailAdress.match(regex)) return true
-    else return false
+  function isEmail(emailAddress) {
+    return !!emailAddress.match(regex);
   }
-
-
 
   const handleSubmit = async (event) => {
     event.preventDefault()
@@ -29,18 +26,13 @@ export function LoginPage() {
       if (validEmail && validPassword) {
         await login(email, password)
       }
-    } catch (error) {
-    }
+    } catch (error) {}
   }
-
-
 
   useEffect(() => {
     setValidEmail(isEmail(email))
   }, [email])
 
-
- 
   useEffect(() => {
     if (validEmail) {
       setMailError(null)
@@ -48,9 +40,6 @@ export function LoginPage() {
       setMailError("Invalid email")
     }
   }, [validEmail])
-
-
-
 
   useEffect(() => {
     if (password.length <= 4) {
@@ -61,7 +50,6 @@ export function LoginPage() {
       setPasswordError(null)
     }
   }, [password])
-
 
   return (
     <Layout>
@@ -90,12 +78,17 @@ export function LoginPage() {
               </div>
             </div>
             <div>
-              <button disabled={!validEmail || !validPassword} className="login-button">Login</button>
+              <button
+                disabled={!validEmail || !validPassword}
+                className="login-button"
+              >
+                Login
+              </button>
               {mailError && email.length !== 0 && (
-                <h5 style={{ color: "blue" }}>{mailError}</h5>  
+                <h5 style={{ color: "blue" }}>{mailError}</h5>
               )}
-              {passwordError && password.length !== 0 &&(
-                <h5 style={{ color: "red" }}>{passwordError}</h5>  
+              {passwordError && password.length !== 0 && (
+                <h5 style={{ color: "red" }}>{passwordError}</h5>
               )}
             </div>
           </form>

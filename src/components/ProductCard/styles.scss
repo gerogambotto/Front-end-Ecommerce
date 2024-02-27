@@ -1,5 +1,4 @@
 @import "../../styles/variables.scss";
-$greendefault: #279d2e;
 .product-card {
   width: 100%;
   max-width: 300px;
@@ -11,12 +10,12 @@ $greendefault: #279d2e;
   transition: all 0.05s ease-in-out;
   justify-content: center;
   display: flex;
-  margin: auto 1rem;
+  margin: 40px auto;
 
   &:hover {
-    transform: scale(1.1);
+    transform: scale(1.05);
     box-shadow: 0 5px 20px black;
-  }
+  } 
 
   a {
     text-decoration: none;
@@ -42,7 +41,7 @@ $greendefault: #279d2e;
   .price-product {
     font-size: 28px;
     line-height: 28px;
-    color: $greendefault;
+    color: $primaryColor;
     font-weight: 500;
   }
 

@@ -1,0 +1,47 @@
+@import '../../styles/variables.scss';
+
+
+.home-gallery{
+
+    display: flex;
+    width: 100%;
+    margin-top: 5%;
+    .text-img-conteiner{
+        width: 0%;        
+        flex-grow: 1;
+        object-fit: cover;
+        opacity: .7;
+        transition: .5s ease;
+    }
+    .image-home-gallery{
+        height: 200px;
+    }  
+    .text-img-conteiner:hover{
+        cursor: pointer;
+        width: 2.5%;
+        opacity: 1;
+        filter: contrast(120%)
+    }
+    .text-image-hover{
+        visibility: hidden;
+        text-transform: capitalize;
+        position: absolute;
+        top: 8px;
+        right: 16px;
+        background: white;
+        padding: 10px;
+        transition: .5s ease;
+    }
+    .text-img-conteiner:hover .text-image-hover{
+       visibility: visible;
+    }
+
+   
+
+}
+
+@media (max-width: 999px) {
+    .home-gallery{
+        visibility: hidden;
+    }
+  }

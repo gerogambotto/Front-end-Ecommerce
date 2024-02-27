@@ -1,44 +1,50 @@
-import React from "react";
-import { useState, useEffect } from "react";
-
+import React, { useState, useEffect, useRef } from "react";
 import "./styles.scss";
 
 const Carousel = (props) => {
-  const { children, show, infiniteLoop } = props;
+  const { children } = props;
 
-  const [currentIndex, setCurrentIndex] = useState(infiniteLoop ? show : 0);
+  const [currentIndex, setCurrentIndex] = useState(0);
   const [length, setLength] = useState(children.length);
-
-  const [isRepeating, setIsRepeating] = useState(
-    infiniteLoop && children.length > show
-  );
   const [transitionEnabled, setTransitionEnabled] = useState(true);
-
   const [touchPosition, setTouchPosition] = useState(null);
+  const [showItems, setShowItems] = useState(4); // Número predeterminado
 
-  // Set the length to match current children from props
-  useEffect(() => {
-    setLength(children.length);
-    setIsRepeating(infiniteLoop && children.length > show);
-  }, [children, infiniteLoop, show]);
+  const carouselWrapperRef = useRef(null);
 
-  useEffect(() => {
-    if (isRepeating) {
-      if (currentIndex === show || currentIndex === length) {
-        setTransitionEnabled(true);
-      }
+  const handleResize = () => {
+    const windowWidth = window.innerWidth;
+
+    if (windowWidth < 768) {
+      setShowItems(1); // Configura el número de elementos para pantallas móviles
+    } else if (windowWidth < 992) {
+      setShowItems(2); // Configura el número de elementos para tabletas, por ejemplo
+    } else {
+      setShowItems(4); // Configura el número de elementos para pantallas más grandes
     }
-  }, [currentIndex, isRepeating, show, length]);
+  };
 
   const next = () => {
-    if (isRepeating || currentIndex < length - show) {
-      setCurrentIndex((prevState) => prevState + 1);
+    if (transitionEnabled) {
+      setCurrentIndex((prevState) => {
+        if (prevState === length - showItems) {
+          return 0;
+        } else {
+          return prevState + 1;
+        }
+      });
     }
   };
 
   const prev = () => {
-    if (isRepeating || currentIndex > 0) {
-      setCurrentIndex((prevState) => prevState - 1);
+    if (transitionEnabled) {
+      setCurrentIndex((prevState) => {
+        if (prevState === 0) {
+          return length - showItems;
+        } else {
+          return prevState - 1;
+        }
+      });
     }
   };
 
@@ -59,75 +65,76 @@ const Carousel = (props) => {
 
     if (diff > 5) {
       next();
-    }
-
-    if (diff < -5) {
+      setTouchPosition(null);
+    } else if (diff < -5) {
       prev();
-    }
-
-    setTouchPosition(null);
-  };
-
-  const handleTransitionEnd = () => {
-    if (isRepeating) {
-      if (currentIndex === 0) {
-        setTransitionEnabled(false);
-        setCurrentIndex(length);
-      } else if (currentIndex === length + show) {
-        setTransitionEnabled(false);
-        setCurrentIndex(show);
-      }
+      setTouchPosition(null);
     }
   };
 
-  const renderExtraPrev = () => {
-    let output = [];
-    for (let index = 0; index < show; index++) {
-      output.push(children[length - 1 - index]);
-    }
-    output.reverse();
-    return output;
-  };
+  useEffect(() => {
+    setLength(children.length);
+  }, [children]);
 
-  const renderExtraNext = () => {
-    let output = [];
-    for (let index = 0; index < show; index++) {
-      output.push(children[index]);
-    }
-    return output;
-  };
+  useEffect(() => {
+    // Agrega un listener para detectar cambios en el tamaño de la ventana
+    window.addEventListener("resize", handleResize);
+    // Llama a la función para configurar el número inicial de elementos
+    handleResize();
+
+    return () => {
+      // Limpia el listener al desmontar el componente
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
+  useEffect(() => {
+    const handleTransitionEnd = () => {
+      setTransitionEnabled(true);
+    };
+
+    carouselWrapperRef.current.addEventListener(
+      "transitionend",
+      handleTransitionEnd
+    );
+
+    return () => {
+      carouselWrapperRef.current.removeEventListener(
+        "transitionend",
+        handleTransitionEnd
+      );
+    };
+  }, []);
+
+  useEffect(() => {
+    setTransitionEnabled(true);
+  }, [currentIndex]);
 
   return (
     <div className="carousel-container">
       <div className="carousel-wrapper">
-        {(isRepeating || currentIndex > 0) && (
-          <button onClick={prev} className="left-arrow">
-            &lt;
-          </button>
-        )}
+        <button onClick={prev} className="left-arrow">
+          &lt;
+        </button>
         <div
+          ref={carouselWrapperRef}
           className="carousel-content-wrapper"
           onTouchStart={handleTouchStart}
           onTouchMove={handleTouchMove}
         >
           <div
-            className={`carousel-content show-${show}`}
+            className={`carousel-content show-${showItems}`}
             style={{
-              transform: `translateX(-${currentIndex * (100 / show)}%)`,
-              transition: !transitionEnabled ? "none" : undefined,
+              transform: `translateX(-${currentIndex * (100 / showItems)}%)`,
+              transition: transitionEnabled ? "transform 0.5s" : "none",
             }}
-            onTransitionEnd={() => handleTransitionEnd()}
           >
-            {length > show && isRepeating && renderExtraPrev()}
             {children}
-            {length > show && isRepeating && renderExtraNext()}
           </div>
         </div>
-        {(isRepeating || currentIndex < length - show) && (
-          <button onClick={next} className="right-arrow">
-            &gt;
-          </button>
-        )}
+        <button onClick={next} className="right-arrow">
+          &gt;
+        </button>
       </div>
     </div>
   );

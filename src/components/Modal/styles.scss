@@ -1,0 +1,17 @@
+@import "../../styles/variables";
+
+.number-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    
+}
+#carrito-modal{
+    .modal-footer-container{
+        justify-content: start;
+    }
+    .modal-buy-botton{
+        background: $primaryColor;
+        justify-content: center;
+    }
+}
